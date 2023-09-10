@@ -41,6 +41,7 @@ M.mason = {
     -- golang stuff
     "gopls",
     "gofumpt",
+    "goimports",
   },
 }
 
