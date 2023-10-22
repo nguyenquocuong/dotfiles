@@ -16,6 +16,9 @@ local sources = {
 
   -- go
   b.formatting.goimports,
+
+  -- rust
+  b.formatting.rustfmt,
 }
 
 null_ls.setup {

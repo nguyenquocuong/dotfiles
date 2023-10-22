@@ -42,6 +42,9 @@ M.mason = {
     "gopls",
     "gofumpt",
     "goimports",
+
+    -- rust
+    "rust-analyzer",
   },
 }
 
