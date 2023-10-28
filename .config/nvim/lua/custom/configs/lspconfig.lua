@@ -21,6 +21,7 @@ lspconfig.clangd.setup {
     "--background-index",
     "--clang-tidy",
     "--header-insertion=iwyu",
+    "--offset-encoding=utf-16",
     "--query-driver=/usr/bin/clang*"
   },
   filetypes = { "c", "cpp" },
