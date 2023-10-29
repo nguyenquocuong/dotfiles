@@ -28,9 +28,20 @@ M.general = {
 }
 
 M.nvimtree = {
-  n = {
-    ["<C-b>"] = { "<cmd>NvimTreeToggle<CR>", "Toggle NvimTree" },
-  },
+	n = {
+		["<C-b>"] = { "<cmd>NvimTreeToggle<CR>", "Toggle NvimTree" },
+	},
+}
+
+M.dap = {
+	plugin = true,
+	n = {
+		["<leader>db"] = { "<cmd> DapToggleBreakpoint <CR>", "Toggle breakpoint" },
+		["<leader>dc"] = { "<cmd> DapContinue <CR>", "Continue" },
+		["<leader>di"] = { "<cmd> DapStepInto <CR>", "Step into" },
+		["<leader>do"] = { "<cmd> DapStepOut <CR>", "Step out" },
+		["<leader>dd"] = { "<cmd> DapTerminate <CR>", "Terminate" },
+	},
 }
 
 return M
