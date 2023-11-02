@@ -8,7 +8,7 @@ M.ui = {
   theme = "onedark",
   theme_toggle = { "onedark", "one_light" },
   statusline = {
-    theme = "default",
+    theme = "vscode_colored",
     separator_style = "block",
   },
   hl_override = highlights.override,
