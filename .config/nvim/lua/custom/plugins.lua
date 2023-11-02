@@ -102,10 +102,10 @@ local plugins = {
 		end,
 	},
 
-  {
-    "nvim-lua/plenary.nvim",
-    lazy = false,
-  },
+	{
+		"nvim-lua/plenary.nvim",
+		lazy = false,
+	},
 
 	-- To make a plugin not be loaded
 	-- {
@@ -117,47 +117,59 @@ local plugins = {
 		lazy = false,
 	},
 
-  {
-    "Shatur/neovim-tasks",
-    lazy = false,
-    config = function()
-      local Path = require('plenary.path')
-      require('tasks').setup({
-        default_params = { -- Default module parameters with which `neovim.json` will be created.
-          cmake = {
-            cmd = 'cmake', -- CMake executable to use, can be changed using `:Task set_module_param cmake cmd`.
-            build_dir = tostring(Path:new('{cwd}', 'build', '{os}-{build_type}')), -- Build directory. The expressions `{cwd}`, `{os}` and `{build_type}` will be expanded with the corresponding text values. Could be a function that return the path to the build directory.
-            build_type = 'Debug', -- Build type, can be changed using `:Task set_module_param cmake build_type`.
-            dap_name = 'codelldb', -- DAP configuration name from `require('dap').configurations`. If there is no such configuration, a new one with this name as `type` will be created.
-            args = { -- Task default arguments.
-              configure = { '-D', 'CMAKE_EXPORT_COMPILE_COMMANDS=1' },
-            },
-          },
-        },
-        save_before_run = false, -- If true, all files will be saved before executing a task.
-        params_file = 'neovim.json', -- JSON file to store module and task parameters.
-        quickfix = {
-          pos = 'botright', -- Default quickfix position.
-          height = 12, -- Default height.
-        },
-        dap_open_command = function()
-          local dap, dapui = require("dap"), require("dapui")
+	{
+		"Shatur/neovim-tasks",
+		ft = { "h", "cpp", "cmake" },
+		config = function()
+			local Path = require("plenary.path")
 
-          dapui.setup()
+			require("tasks").setup({
+				default_params = { -- Default module parameters with which `neovim.json` will be created.
+					cmake = {
+						cmd = "cmake", -- CMake executable to use, can be changed using `:Task set_module_param cmake cmd`.
+						build_dir = tostring(Path:new("{cwd}", "build", "{os}-{build_type}")), -- Build directory. The expressions `{cwd}`, `{os}` and `{build_type}` will be expanded with the corresponding text values. Could be a function that return the path to the build directory.
+						build_type = "Debug", -- Build type, can be changed using `:Task set_module_param cmake build_type`.
+						dap_name = "codelldb", -- DAP configuration name from `require('dap').configurations`. If there is no such configuration, a new one with this name as `type` will be created.
+						args = { -- Task default arguments.
+							configure = { "-D", "CMAKE_EXPORT_COMPILE_COMMANDS=1" },
+						},
+					},
+				},
+				save_before_run = false, -- If true, all files will be saved before executing a task.
+				params_file = "neovim.json", -- JSON file to store module and task parameters.
+				quickfix = {
+					pos = "botright", -- Default quickfix position.
+					height = 12, -- Default height.
+				},
+				dap_open_command = function()
+					local dap, dapui = require("dap"), require("dapui")
 
-          dap.listeners.after.event_initialized["dapui_config"] = function()
-            dapui.open()
-          end
-          dap.listeners.before.event_terminated["dapui_config"] = function()
-            dapui.close()
-          end
-          dap.listeners.before.event_exited["dapui_config"] = function()
-            dapui.close()
-          end
-        end, -- Command to run after starting DAP session. You can set it to `false` if you don't want to open anything or `require('dapui').open` if you are using https://github.com/rcarriga/nvim-dap-ui
-      })
-    end,
-  },
+					dapui.setup()
+
+					dap.configurations.cpp = {
+						{
+							name = "Launch",
+							type = "codelldb",
+							request = "launch",
+							stopOnEntry = false,
+							args = {},
+							runInTerminal = true,
+						},
+					}
+
+					dap.listeners.after.event_initialized["dapui_config"] = function()
+						dapui.open()
+					end
+					dap.listeners.before.event_terminated["dapui_config"] = function()
+						dapui.close()
+					end
+					dap.listeners.before.event_exited["dapui_config"] = function()
+						dapui.close()
+					end
+				end, -- Command to run after starting DAP session. You can set it to `false` if you don't want to open anything or `require('dapui').open` if you are using https://github.com/rcarriga/nvim-dap-ui
+			})
+		end,
+	},
 }
 
 return plugins

@@ -38,9 +38,20 @@ M.dap = {
 	n = {
 		["<leader>db"] = { "<cmd> DapToggleBreakpoint <CR>", "Toggle breakpoint" },
 		["<leader>dc"] = { "<cmd> DapContinue <CR>", "Continue" },
+		["<leader>dn"] = { "<cmd> DapStepOver <CR>", "Step over" },
 		["<leader>di"] = { "<cmd> DapStepInto <CR>", "Step into" },
 		["<leader>do"] = { "<cmd> DapStepOut <CR>", "Step out" },
 		["<leader>dd"] = { "<cmd> DapTerminate <CR>", "Terminate" },
+	},
+}
+
+M.cmake = {
+	n = {
+		["<leader>ct"] = { "<cmd> Task set_module_param cmake target <CR>", "Set target" },
+		["<leader>cc"] = { "<cmd> Task start cmake configure <CR>", "Configure" },
+		["<leader>cb"] = { "<cmd> Task start cmake build <CR>", "Build" },
+		["<leader>cr"] = { "<cmd> Task start cmake run <CR>", "Run" },
+		["<leader>cd"] = { "<cmd> Task start cmake debug <CR>", "Debug" },
 	},
 }
 
