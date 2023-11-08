@@ -102,6 +102,15 @@ local plugins = {
 		end,
 	},
 
+  {
+    "easymotion/vim-easymotion",
+    event = "BufRead",
+    lazy = false,
+    config = function()
+      require("custom.configs.vim-easymotion")
+    end,
+  },
+
 	{
 		"nvim-lua/plenary.nvim",
 		lazy = false,
