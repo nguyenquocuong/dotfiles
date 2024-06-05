@@ -10,6 +10,7 @@ local plugins = {
 		event = "VeryLazy",
 		dependencies = {
 			"mfussenegger/nvim-dap",
+      "nvim-neotest/nvim-nio",
 		},
 		config = function()
 			local dap, dapui = require("dap"), require("dapui")
@@ -125,6 +126,10 @@ local plugins = {
 		"mg979/vim-visual-multi",
 		lazy = false,
 	},
+  {
+    "nvim-pack/nvim-spectre",
+    lazy = false,
+  },
 
 	{
 		"Shatur/neovim-tasks",
