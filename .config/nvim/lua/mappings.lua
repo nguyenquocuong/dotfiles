@@ -1,4 +1,4 @@
-require "nvchad.mappings"
+require("nvchad.mappings")
 
 local map = vim.keymap.set
 local nomap = vim.keymap.del
@@ -17,6 +17,9 @@ map("n", "<C-u>", "<C-u>zz")
 
 map("n", "<C-b>", "<cmd>NvimTreeToggle<CR>")
 
+map({ "n", "t" }, "<A-v>", function()
+	require("nvchad.term").toggle({ pos = "vsp", id = "vtoggleTerm", size = 0.3 })
+end, { desc = "terminal toggleable vertical term" })
 
 vim.g.EasyMotion_do_mapping = 0
 vim.g.EasyMotion_noremap = 1
