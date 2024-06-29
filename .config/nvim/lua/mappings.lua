@@ -16,3 +16,9 @@ map("n", "<C-d>", "<C-d>zz")
 map("n", "<C-u>", "<C-u>zz")
 
 map("n", "<C-b>", "<cmd>NvimTreeToggle<CR>")
+
+
+vim.g.EasyMotion_do_mapping = 0
+vim.g.EasyMotion_noremap = 1
+
+map("n", "<Space><Space>", "<Plug>(easymotion-overwin-f2)")
