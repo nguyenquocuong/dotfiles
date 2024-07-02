@@ -29,6 +29,7 @@ map("n", "<Space><Space>", "<Plug>(easymotion-overwin-f2)")
 
 -- dap
 map("n", "<F8>", "<cmd>DapStepInto<CR>", { desc = "Step into" })
+map("n", "<F20>", "<cmd>DapStepOver<CR>", { desc = "Step over" })
 map("n", "<F9>", "<cmd>DapToggleBreakpoint<CR>", { desc = "Toggle breakpoint" })
 map("n", "<F5>", "<cmd>DapContinue<CR>", { desc = "Continue" })
-map("n", "<leader>dd", "<cmd>DapTerminate<CR>", { desc = "Terminate" })
+map("n", "<F17>", "<cmd>DapTerminate<CR>", { desc = "Terminate" })
