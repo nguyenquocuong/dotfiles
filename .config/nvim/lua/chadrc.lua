@@ -5,17 +5,17 @@
 local M = {}
 
 M.ui = {
-  theme = "yoru",
+	theme = "yoru",
 
-  statusline = {
-    theme = "vscode_colored",
-    separator_style = "block",
-  },
+	statusline = {
+		theme = "vscode_colored",
+		separator_style = "block",
+	},
 
-  -- hl_override = {
-  -- 	Comment = { italic = true },
-  -- 	["@comment"] = { italic = true },
-  -- },
+	hl_override = {
+		Comment = { italic = true },
+		["@comment"] = { italic = true },
+	},
 }
 
 return M
