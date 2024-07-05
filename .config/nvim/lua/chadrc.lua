@@ -5,7 +5,8 @@
 local M = {}
 
 M.ui = {
-	theme = "yoru",
+	theme = "one_light",
+	theme_toggle = { "chadracula-evondev", "one_light" },
 
 	statusline = {
 		theme = "vscode_colored",
