@@ -95,13 +95,14 @@ return {
 		"rcarriga/nvim-dap-ui",
 		dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
 		config = function(_, opts)
-			vim.fn.sign_define(
-				"DapBreakpoint",
-				{ text = "🛑", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
-			)
+			vim.api.nvim_set_hl(0, "DapBreakpoint", { ctermbg = 0, fg = "#FF0000", bg = "" })
+			-- vim.api.nvim_set_hl(0, "DapLogPoint", { ctermbg = 0, fg = "#61afef", bg = "#31353f" })
+			vim.api.nvim_set_hl(0, "DapStopped", { ctermbg = 0, fg = "", bg = "#31353f" })
+
+			vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DapBreakpoint", linehl = "", numhl = "" })
 			vim.fn.sign_define(
 				"DapBreakpointCondition",
-				{ text = "ﳁ", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
+				{ text = "", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
 			)
 			vim.fn.sign_define(
 				"DapBreakpointRejected",
@@ -177,15 +178,15 @@ return {
 					stopOnEntry = false,
 				},
 			}
+		end,
+	},
 
-			-- local on_attach = require("nvchad.configs.lspconfig").on_attach
-			-- local on_init = require("nvchad.configs.lspconfig").on_init
-			-- local capabilities = require("nvchad.configs.lspconfig").capabilities
-
-			-- vim.g.rustaceanvim = {
-			-- 	-- DAP configuration
-			-- 	dap = {},
-			-- }
+	{
+		"kylechui/nvim-surround",
+		version = "*", -- Use for stability; omit to use `main` branch for the latest features
+		event = "VeryLazy",
+		config = function()
+			require("configs.nvim-surround")
 		end,
 	},
 }

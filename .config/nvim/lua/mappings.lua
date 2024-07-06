@@ -28,8 +28,9 @@ vim.g.EasyMotion_noremap = 1
 map("n", "<Space><Space>", "<Plug>(easymotion-overwin-f2)")
 
 -- dap
-map("n", "<F8>", "<cmd>DapStepInto<CR>", { desc = "Step into" })
-map("n", "<F20>", "<cmd>DapStepOver<CR>", { desc = "Step over" })
-map("n", "<F9>", "<cmd>DapToggleBreakpoint<CR>", { desc = "Toggle breakpoint" })
-map("n", "<F5>", "<cmd>DapContinue<CR>", { desc = "Continue" })
-map("n", "<F17>", "<cmd>DapTerminate<CR>", { desc = "Terminate" })
+map("n", "<leader>db", "<cmd>DapToggleBreakpoint<CR>", { desc = "Toggle breakpoint" })
+map("n", "<leader>dc", "<cmd>DapContinue<CR>", { desc = "Continue" })
+map("n", "<leader>dd", "<cmd>DapTerminate<CR>", { desc = "Terminate" })
+map("n", "<leader>di", "<cmd>DapStepInto<CR>", { desc = "Step into" })
+map("n", "<leader>dn", "<cmd>DapStepOver<CR>", { desc = "Step over" })
+map("n", "<leader>do", "<cmd>DapStepOut<CR>", { desc = "Step out" })
