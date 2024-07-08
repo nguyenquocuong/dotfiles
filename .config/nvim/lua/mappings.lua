@@ -10,6 +10,11 @@ nomap("n", "<C-n>")
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 
+map("n", "<C-h>", "<cmd>TmuxNavigateLeft<CR>")
+map("n", "<C-j>", "<cmd>TmuxNavigateDown<CR>")
+map("n", "<C-k>", "<cmd>TmuxNavigateUp<CR>")
+map("n", "<C-l>", "<cmd>TmuxNavigateRight<CR>")
+
 map("n", "j", "jzz")
 map("n", "k", "kzz")
 map("n", "<C-d>", "<C-d>zz")
