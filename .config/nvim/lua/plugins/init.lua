@@ -66,6 +66,7 @@ return {
 				"markdown_inline",
 				"go",
 				"rust",
+				"just",
 			},
 			indent = {
 				enable = true,
@@ -94,6 +95,11 @@ return {
 	{
 		"nvim-pack/nvim-spectre",
 		lazy = false,
+	},
+
+	{
+		"NoahTheDuke/vim-just",
+		ft = { "just" },
 	},
 
 	{
