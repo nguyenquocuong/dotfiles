@@ -14,14 +14,15 @@ dap.listeners.before.event_exited.dapui_config = function()
 	dapui.close()
 end
 
-local codelldb_path = require("mason-registry").get_package("codelldb"):get_install_path() .. "/extension"
-local codelldb_bin = codelldb_path .. "/adapter/codelldb"
+local extension_path = require("mason-registry").get_package("codelldb"):get_install_path() .. "/extension"
+local codelldb_path = extension_path .. "/adapter/codelldb"
+local liblldb_path = extension_path .. "/lldb/lib/liblldb.so"
 
 dap.adapters.codelldb = {
 	type = "server",
 	port = "${port}",
 	executable = {
-		command = codelldb_bin,
+		command = codelldb_path,
 		args = { "--port", "${port}" },
 	},
 }
@@ -43,6 +44,9 @@ dap.configurations.rust = {
 	},
 }
 
+local cfg = require("rustaceanvim.config")
+local adapter = cfg.get_codelldb_adapter(codelldb_path, liblldb_path)
+
 vim.g.rustaceanvim = {
 	-- LSP configuration
 	server = {
@@ -59,5 +63,5 @@ vim.g.rustaceanvim = {
 		end,
 	},
 	-- DAP configuration
-	dap = {},
+	dap = { adapter = adapter },
 }
