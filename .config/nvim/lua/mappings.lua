@@ -20,11 +20,16 @@ map("n", "k", "kzz")
 map("n", "<C-d>", "<C-d>zz")
 map("n", "<C-u>", "<C-u>zz")
 
-map("n", "<C-b>", "<cmd>NvimTreeToggle<CR>")
+-- nvimtree
+map("n", "<C-b>", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" })
 
 map({ "n", "t" }, "<A-v>", function()
 	require("nvchad.term").toggle({ pos = "vsp", id = "vtoggleTerm", size = 0.3 })
 end, { desc = "terminal toggleable vertical term" })
+
+-- lsp
+map("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration" })
+map("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
 
 -- easymotion
 vim.g.EasyMotion_do_mapping = 0
