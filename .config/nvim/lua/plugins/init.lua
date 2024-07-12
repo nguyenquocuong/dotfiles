@@ -158,7 +158,10 @@ return {
 		"mrcjkb/rustaceanvim",
 		ft = { "rust" },
 		version = "^4",
-		dependencies = { "rcarriga/nvim-dap-ui" },
+		dependencies = {
+			"rcarriga/nvim-dap-ui",
+			"adaszko/tree_climber_rust.nvim",
+		},
 		config = function(_, opts)
 			require("configs.rustaceanvim")
 		end,
