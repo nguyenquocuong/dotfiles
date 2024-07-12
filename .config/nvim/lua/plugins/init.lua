@@ -127,6 +127,22 @@ return {
 				"DapStopped",
 				{ text = "", texthl = "DapStopped", linehl = "DapStopped", numhl = "DapStopped" }
 			)
+
+			local dap, dapui = require("dap"), require("dapui")
+
+			dapui.setup()
+			dap.listeners.before.attach.dapui_config = function()
+				dapui.open()
+			end
+			dap.listeners.before.launch.dapui_config = function()
+				dapui.open()
+			end
+			dap.listeners.before.event_terminated.dapui_config = function()
+				dapui.close()
+			end
+			dap.listeners.before.event_exited.dapui_config = function()
+				dapui.close()
+			end
 		end,
 	},
 
@@ -147,6 +163,23 @@ return {
 			require("configs.rustaceanvim")
 		end,
 	},
+
+	-- {
+	-- 	"nvim-neotest/neotest",
+	-- 	dependencies = {
+	-- 		"nvim-neotest/nvim-nio",
+	-- 		"nvim-lua/plenary.nvim",
+	-- 		"antoinemadec/FixCursorHold.nvim",
+	-- 		"nvim-treesitter/nvim-treesitter",
+	-- 	},
+	-- 	config = function(_, opts)
+	-- 		require("neotest").setup({
+	-- 			adapters = {
+	-- 				require("rustaceanvim.neotest"),
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- },
 
 	{
 		"kylechui/nvim-surround",
