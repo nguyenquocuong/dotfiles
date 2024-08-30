@@ -40,7 +40,12 @@ map("n", "<Space><Space>", "<Plug>(easymotion-overwin-f2)")
 -- dap
 map("n", "<leader>db", "<cmd>DapToggleBreakpoint<CR>", { desc = "Toggle breakpoint" })
 map("n", "<leader>dc", "<cmd>DapContinue<CR>", { desc = "Continue" })
-map("n", "<leader>dd", "<cmd>DapTerminate<CR>", { desc = "Terminate" })
+-- map("n", "<leader>dd", "<cmd>DapTerminate<CR>", { desc = "Terminate" })
 map("n", "<leader>di", "<cmd>DapStepInto<CR>", { desc = "Step into" })
 map("n", "<leader>dn", "<cmd>DapStepOver<CR>", { desc = "Step over" })
 map("n", "<leader>do", "<cmd>DapStepOut<CR>", { desc = "Step out" })
+map("n", "<leader>de", "<cmd>lua require('dap').terminate()<CR>", { desc = "Terminate" })
+map("n", "<leader>dr", "<cmd>lua require('dap').run_last()<CR>", { desc = "Run last" })
+
+-- rustaceanvim
+map("n", "<leader>dt", "<cmd>RustLsp testables<CR>", { desc = "Testables" })

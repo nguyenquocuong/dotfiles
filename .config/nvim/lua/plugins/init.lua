@@ -103,6 +103,48 @@ return {
 	},
 
 	{
+		"kylechui/nvim-surround",
+		version = "*", -- Use for stability; omit to use `main` branch for the latest features
+		event = "VeryLazy",
+		config = function()
+			require("configs.nvim-surround")
+		end,
+	},
+
+	{
+		"mrcjkb/rustaceanvim",
+		version = "^5",
+		lazy = false,
+		dependencies = {
+			"rcarriga/nvim-dap-ui",
+			"adaszko/tree_climber_rust.nvim",
+		},
+		config = function(_, opts)
+			require("configs.rustaceanvim")
+		end,
+	},
+
+	{
+		"mfussenegger/nvim-dap",
+		config = function()
+			local dap, dapui = require("dap"), require("dapui")
+			dapui.setup()
+			dap.listeners.before.attach.dapui_config = function()
+				dapui.open()
+			end
+			dap.listeners.before.launch.dapui_config = function()
+				dapui.open()
+			end
+			dap.listeners.before.event_terminated.dapui_config = function()
+				dapui.close()
+			end
+			dap.listeners.before.event_exited.dapui_config = function()
+				dapui.close()
+			end
+		end,
+	},
+
+	{
 		"rcarriga/nvim-dap-ui",
 		dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
 		config = function(_, opts)
@@ -127,22 +169,6 @@ return {
 				"DapStopped",
 				{ text = "", texthl = "DapStopped", linehl = "DapStopped", numhl = "DapStopped" }
 			)
-
-			local dap, dapui = require("dap"), require("dapui")
-
-			dapui.setup()
-			dap.listeners.before.attach.dapui_config = function()
-				dapui.open()
-			end
-			dap.listeners.before.launch.dapui_config = function()
-				dapui.open()
-			end
-			dap.listeners.before.event_terminated.dapui_config = function()
-				dapui.close()
-			end
-			dap.listeners.before.event_exited.dapui_config = function()
-				dapui.close()
-			end
 		end,
 	},
 
@@ -155,15 +181,19 @@ return {
 	},
 
 	{
-		"mrcjkb/rustaceanvim",
-		ft = { "rust" },
-		version = "^4",
-		dependencies = {
-			"rcarriga/nvim-dap-ui",
-			"adaszko/tree_climber_rust.nvim",
-		},
+		"theHamsta/nvim-dap-virtual-text",
+		lazy = false,
 		config = function(_, opts)
-			require("configs.rustaceanvim")
+			require("nvim-dap-virtual-text").setup(opts)
+		end,
+	},
+
+	{
+		"saecki/crates.nvim",
+		tag = "stable",
+		event = { "BufRead Cargo.toml" },
+		config = function()
+			require("crates").setup()
 		end,
 	},
 
@@ -183,13 +213,4 @@ return {
 	-- 		})
 	-- 	end,
 	-- },
-
-	{
-		"kylechui/nvim-surround",
-		version = "*", -- Use for stability; omit to use `main` branch for the latest features
-		event = "VeryLazy",
-		config = function()
-			require("configs.nvim-surround")
-		end,
-	},
 }
