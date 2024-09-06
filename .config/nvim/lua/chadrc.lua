@@ -19,4 +19,34 @@ M.ui = {
 	},
 }
 
+M.mason = {
+	command = true,
+	pkgs = {
+		-- lua stuff
+		"lua-language-server",
+		"stylua",
+
+		-- web dev stuff
+		"css-lsp",
+		"html-lsp",
+		"typescript-language-server",
+		"prettier",
+
+		-- c/cpp stuff
+		"clangd",
+		"clang-format",
+		"codelldb",
+
+		-- golang stuff
+		"gopls",
+		"gofumpt",
+		"goimports",
+
+		-- rust
+		"rust-analyzer",
+
+		"terraform-ls",
+	},
+}
+
 return M

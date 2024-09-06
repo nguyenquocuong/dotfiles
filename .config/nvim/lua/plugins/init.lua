@@ -19,34 +19,7 @@ return {
 
 	{
 		"williamboman/mason.nvim",
-		opts = {
-			ensure_installed = {
-				-- lua stuff
-				"lua-language-server",
-				"stylua",
-
-				-- web dev stuff
-				"css-lsp",
-				"html-lsp",
-				"typescript-language-server",
-				"prettier",
-
-				-- c/cpp stuff
-				"clangd",
-				"clang-format",
-				"codelldb",
-
-				-- golang stuff
-				"gopls",
-				"gofumpt",
-				"goimports",
-
-				-- rust
-				"rust-analyzer",
-
-				"terraform-ls",
-			},
-		},
+		opts = {},
 	},
 
 	{
