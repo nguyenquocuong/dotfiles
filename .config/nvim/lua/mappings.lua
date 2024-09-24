@@ -45,7 +45,8 @@ map("n", "<leader>di", "<cmd>DapStepInto<CR>", { desc = "Step into" })
 map("n", "<leader>dn", "<cmd>DapStepOver<CR>", { desc = "Step over" })
 map("n", "<leader>do", "<cmd>DapStepOut<CR>", { desc = "Step out" })
 map("n", "<leader>de", "<cmd>lua require('dap').terminate()<CR>", { desc = "Terminate" })
-map("n", "<leader>dr", "<cmd>lua require('dap').run_last()<CR>", { desc = "Run last" })
+map("n", "<leader>dl", "<cmd>lua require('dap').run_last()<CR>", { desc = "Run last" })
 
 -- rustaceanvim
+map("n", "<leader>dr", "<cmd>RustLsp runnables<CR>", { desc = "Runnables" })
 map("n", "<leader>dt", "<cmd>RustLsp testables<CR>", { desc = "Testables" })
