@@ -9,14 +9,16 @@ M.base46 = {
 	theme = "chadracula-evondev",
 	theme_toggle = { "chadracula-evondev", "one_light" },
 
-	statusline = {
-		theme = "vscode_colored",
-		separator_style = "block",
-	},
-
 	hl_override = {
 		Comment = { italic = true },
 		["@comment"] = { italic = true },
+	},
+}
+
+M.ui = {
+	statusline = {
+		theme = "vscode_colored",
+		separator_style = "block",
 	},
 }
 
