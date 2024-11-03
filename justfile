@@ -9,7 +9,8 @@ install_pkgs:
   sudo pacman -S --noconfirm pipewire pavucontrol playerctl pamixer
 
   # Applications
-  sudo pacman -S --noconfirm thunar flameshot lxappearance arc-gtk-theme papirus-icon-theme
+  sudo pacman -S --noconfirm vlc flameshot lxappearance arc-gtk-theme papirus-icon-theme
+  sudo pacman -S --noconfirm thunar catfish gvfs thunar-volman thunar-archive-plugin thunar-media-tags-plugin
   yay -S --noconfirm ibus-bamboo google-chrome
   
   sudo cp rofi_run /usr/local/bin
