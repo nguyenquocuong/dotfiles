@@ -5,11 +5,11 @@ install: install_pkgs
 install_pkgs:
   #!/bin/bash
   
-  sudo pacman -S --noconfirm less xorg-server git gitui github-cli alacritty tmux rofi dunst polybar neovim ttf-firacode-nerd exa bat zoxide ripgrep
+  sudo pacman -S --noconfirm less lxsession-gtk3 xorg-server git gitui github-cli alacritty tmux rofi dunst polybar neovim ttf-firacode-nerd exa bat zoxide ripgrep ttf-font-awesome
   sudo pacman -S --noconfirm pipewire pavucontrol playerctl pamixer
 
   # Applications
-  sudo pacman -S --noconfirm vlc flameshot lxappearance arc-gtk-theme papirus-icon-theme
+  sudo pacman -S --noconfirm vlc feh flameshot lxappearance arc-gtk-theme papirus-icon-theme
   sudo pacman -S --noconfirm thunar catfish gvfs thunar-volman thunar-archive-plugin thunar-media-tags-plugin
   yay -S --noconfirm ibus-bamboo google-chrome
   
