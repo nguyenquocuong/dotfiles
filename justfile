@@ -18,6 +18,11 @@ install_pkgs:
   # Tmux
   cp .tmux.conf ~/
 
+sound_setup:
+  #!/bin/bash
+
+  pactl load-module module-switch-on-connect
+
 fish_setup:
   #!/bin/bash
 
