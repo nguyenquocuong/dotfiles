@@ -18,8 +18,23 @@ end
 
 -- typescript
 lspconfig.ts_ls.setup({
-	on_attach = nvlsp.on_attach,
+	on_attach = function(client, bufnr)
+		nvlsp.on_attach(client, bufnr)
+
+		vim.keymap.set("n", "fO", function()
+			vim.lsp.buf.execute_command({
+				command = "_typescript.organizeImports",
+				arguments = { vim.api.nvim_buf_get_name(0) },
+				title = "",
+			})
+		end, { buffer = bufnr })
+	end,
 	on_init = nvlsp.on_init,
+	capabilities = nvlsp.capabilities,
+})
+
+lspconfig.eslint.setup({
+	on_attach = nvlsp.on_attach,
 	capabilities = nvlsp.capabilities,
 })
 
