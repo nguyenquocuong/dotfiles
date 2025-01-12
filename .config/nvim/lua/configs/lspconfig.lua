@@ -31,6 +31,12 @@ lspconfig.ts_ls.setup({
 	end,
 	on_init = nvlsp.on_init,
 	capabilities = nvlsp.capabilities,
+	init_options = {
+		preferences = {
+			importModuleSpecifierPreference = "relative",
+			importModuleSpecifierEnding = "minimal",
+		},
+	},
 })
 
 lspconfig.eslint.setup({
