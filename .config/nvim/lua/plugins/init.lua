@@ -160,4 +160,22 @@ return {
 			require("crates").setup()
 		end,
 	},
+
+	{
+		"github/copilot.vim",
+		lazy = false,
+		config = function()
+			vim.g.copilot_no_tab_map = 1
+			vim.g.copilot_settings = { selectedCompletionModel = "claude-35-sonnet" }
+			vim.g.copilot_integration_id = "vscode-chat"
+
+			-- Map <M-l> (Alt + L) to accept Copilot suggestions
+			vim.keymap.set("i", "<M-l>", 'copilot#Accept("<CR>")', {
+				expr = true,
+				silent = true,
+				replace_keycodes = false,
+				desc = "Accept Copilot suggestion",
+			})
+		end,
+	},
 }
