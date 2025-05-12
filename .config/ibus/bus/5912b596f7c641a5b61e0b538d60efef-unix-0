@@ -1,7 +1,0 @@
-# This file is created by ibus-daemon, please do not modify it.
-# This file allows processes on the machine to find the
-# ibus session bus with the below address.
-# If the IBUS_ADDRESS environment variable is set, it will
-# be used rather than this file.
-IBUS_ADDRESS=unix:path=/home/quocuong/.cache/ibus/dbus-1JDSnxLL,guid=0b774e61b4d0f4b8302c6059672703f0
-IBUS_DAEMON_PID=1928

@@ -5,18 +5,32 @@ install: install_pkgs
 install_pkgs:
   #!/bin/bash
   
-  sudo pacman -S --noconfirm less lxsession-gtk3 xorg-server git gitui github-cli alacritty tmux rofi dunst polybar neovim ttf-firacode-nerd exa bat zoxide ripgrep ttf-font-awesome
+  sudo pacman -S --noconfirm less lxsession-gtk3 xorg-server git gitui github-cli alacritty tmux rofi dunst polybar neovim exa bat zoxide ripgrep
   sudo pacman -S --noconfirm pipewire pavucontrol playerctl pamixer
 
+  # Bluetooth
+  sudo pacman -S --noconfirm bluez bluez-utils blueman
+
   # Applications
-  sudo pacman -S --noconfirm vlc feh flameshot lxappearance arc-gtk-theme papirus-icon-theme
+  sudo pacman -S --noconfirm vlc feh flameshot lxappearance papirus-icon-theme
   sudo pacman -S --noconfirm thunar catfish gvfs thunar-volman thunar-archive-plugin thunar-media-tags-plugin
-  yay -S --noconfirm ibus-bamboo google-chrome
+  yay -S --noconfirm arc-gtk-theme ibus-bamboo google-chrome
+
+  # Fonts
+  sudo pacman -S ttf-firacode-nerd ttf-font-awesome
+  yay -S --noconfirm noto-fonts noto-fonts-emoji noto-fonts-cjk noto-fonts-extra
   
   sudo cp rofi_run /usr/local/bin
 
-  # Tmux
-  cp .tmux.conf ~/
+config:
+  #!/bin/bash
+
+  cp ./.xinitrc ./.gtkrc-2.0 .tmux.conf ~/
+
+  cp -r ./.config/alacritty ~/.config/
+  cp -r ./.config/rofi ~/.config/
+  cp -r ./.config/polybar ~/.config/
+  cp -r ./.config/dunst ~/.config/
 
 sound_setup:
   #!/bin/bash
@@ -48,18 +62,3 @@ neovim_uninstall:
   rm -rf ~/.local/state/nvim
   rm -rf ~/.local/share/nvim
 
-nvm_install:
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
-
-fisher_install:
-  #!/bin/fish
-
-  curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
-
-  fisher install jorgebucaran/nvm.fish
-
-omf_install:
-  #!/bin/bash
-
-  curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
-  omf install pure foreign-env
