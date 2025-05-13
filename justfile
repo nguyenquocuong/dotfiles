@@ -12,7 +12,7 @@ install_pkgs:
   sudo pacman -S --noconfirm bluez bluez-utils blueman
 
   # Applications
-  sudo pacman -S --noconfirm vlc feh flameshot lxappearance papirus-icon-theme
+  sudo pacman -S --noconfirm vlc feh flameshot lxappearance-gtk3 papirus-icon-theme
   sudo pacman -S --noconfirm thunar catfish gvfs thunar-volman thunar-archive-plugin thunar-media-tags-plugin
   yay -S --noconfirm arc-gtk-theme ibus-bamboo google-chrome
 
