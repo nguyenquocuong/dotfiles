@@ -1,12 +1,14 @@
 set shell := ["/bin/bash", "-c"]
 
+root_dir := source_dir()
+
 install: install_pkgs
 
 install_pkgs:
   #!/bin/bash
   
-  sudo pacman -S --noconfirm less lxsession-gtk3 xorg-server git gitui github-cli alacritty tmux rofi dunst polybar neovim exa bat zoxide ripgrep
-  sudo pacman -S --noconfirm pipewire pavucontrol playerctl pamixer
+  sudo pacman -S --noconfirm less lxsession-gtk3 xorg-server git gitui github-cli alacritty tmux rofi dunst polybar neovim exa bat zoxide ripgrep picom
+  sudo pacman -S --noconfirm pipewire pavucontrol playerctl pamixer brightnessctl
 
   # Bluetooth
   sudo pacman -S --noconfirm bluez bluez-utils blueman
@@ -20,7 +22,7 @@ install_pkgs:
   sudo pacman -S ttf-firacode-nerd ttf-font-awesome
   yay -S --noconfirm noto-fonts noto-fonts-emoji noto-fonts-cjk noto-fonts-extra
   
-  sudo cp rofi_run /usr/local/bin
+  # sudo cp rofi_run /usr/local/bin
 
 config:
   #!/bin/bash
@@ -62,3 +64,20 @@ neovim_uninstall:
   rm -rf ~/.local/state/nvim
   rm -rf ~/.local/share/nvim
 
+# Install and configure polybar themes using adi1090x/polybar-themes
+config_polybar:
+  #!/bin/bash
+
+  TMPDIR=/tmp/polybar-themes
+
+  # 1. Clone the polybar-themes repository to a temporary directory
+  git clone --depth=1 https://github.com/adi1090x/polybar-themes.git $TMPDIR
+
+  # 2. Run the setup script from the cloned repository
+  cd $TMPDIR && ./setup.sh <<< 2
+
+  # 3. Copy the user's polybar config from the source directory to ~/.config
+  cp -r {{root_dir}}/.config/polybar ~/.config
+
+  # 4. Clean up by removing the temporary directory
+  rm -rf /tmp/polybar-themes
