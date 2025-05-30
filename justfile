@@ -24,6 +24,13 @@ install_pkgs:
   
   # sudo cp rofi_run /usr/local/bin
 
+update_mirrors:
+  #!/bin/bash
+
+  sudo pacman -Syyu
+  sudo pacman -S --noconfirm reflector
+  sudo reflector --latest 5 --sort rate --save /etc/pacman.d/mirrorlist --country Vietnam,Singapore,WorldWide
+
 config:
   #!/bin/bash
 
