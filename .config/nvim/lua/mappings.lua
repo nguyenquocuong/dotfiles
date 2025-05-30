@@ -28,6 +28,7 @@ map({ "n", "t" }, "<A-v>", function()
 end, { desc = "terminal toggleable vertical term" })
 
 -- lsp
+map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
 map("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration" })
 map("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
 

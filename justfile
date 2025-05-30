@@ -16,7 +16,7 @@ install_pkgs:
   # Applications
   sudo pacman -S --noconfirm vlc feh flameshot lxappearance-gtk3 papirus-icon-theme
   sudo pacman -S --noconfirm thunar catfish gvfs thunar-volman thunar-archive-plugin thunar-media-tags-plugin
-  yay -S --noconfirm arc-gtk-theme ibus-bamboo google-chrome
+  yay -S --noconfirm arc-gtk-theme ibus-bamboo google-chrome betterlockscreen
 
   # Fonts
   sudo pacman -S ttf-firacode-nerd ttf-font-awesome
@@ -57,6 +57,8 @@ neovim_install:
   rm -rf ~/.config/nvim/lua
   ln -s ~/dotfiles/.config/nvim/lua ~/.config/nvim/lua
 
+neovim_config: neovim_install
+
 neovim_uninstall:
   #!/bin/bash
 
@@ -65,7 +67,7 @@ neovim_uninstall:
   rm -rf ~/.local/share/nvim
 
 # Install and configure polybar themes using adi1090x/polybar-themes
-config_polybar:
+polybar_config:
   #!/bin/bash
 
   TMPDIR=/tmp/polybar-themes
@@ -81,3 +83,28 @@ config_polybar:
 
   # 4. Clean up by removing the temporary directory
   rm -rf /tmp/polybar-themes
+
+mons_install:
+  #!/bin/bash
+
+  git clone --recursive https://github.com/Ventto/mons.git
+  cd mons
+  sudo make install
+  cd ..
+  rm -rf mons
+
+xorg_config:
+  #!/bin/bash
+
+  # Copy Xorg configuration files
+  sudo cp {{root_dir}}/Xorg/xorg.conf.d/* /etc/X11/xorg.conf.d/
+
+  # Enable compositor
+  sudo cp -r {{root_dir}}/picom ~/.config
+
+systemd_config:
+  #!/bin/bash
+
+  # Enable betterlockscreen
+  sudo cp {{root_dir}}/systemd/system/betterlockscreen.service /usr/lib/systemd/system/betterlockscreen@$USER.service
+  sudo systemctl enable betterlockscreen@$USER.service

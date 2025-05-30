@@ -27,11 +27,11 @@ set $right l
 ###############     Autostart      ##################
 
 # run with reload
+exec_always --no-startup-id picom
 exec_always --no-startup-id ibus-daemon -drx
 exec_always --no-startup-id $HOME/.fehbg
-
-# polybar
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh --cuts &
+exec_always --no-startup-id mons -a -x $HOME/dotfiles/scripts/multi-monitors.sh
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh --cuts
 
 # run once
 #exec --no-startup-id xfsettingsd

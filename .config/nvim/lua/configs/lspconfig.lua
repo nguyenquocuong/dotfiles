@@ -1,4 +1,3 @@
--- load defaults i.e lua_lsp
 require("nvchad.configs.lspconfig").defaults()
 
 local lspconfig = require("lspconfig")
@@ -82,15 +81,3 @@ for name, opts in pairs(servers) do
 	vim.lsp.enable(name) -- nvim v0.11.0 or above required
 	vim.lsp.config(name, opts) -- nvim v0.11.0 or above required
 end
-
--- lspconfig.rust_analyzer.setup({
---   on_attach = on_attach,
---   capabilities = capabilities,
---   settings = {
---     ["rust-analyzer"] = {
---       checkOnSave = {
---         command = "clippy",
---       },
---     },
---   },
--- })
