@@ -1,4 +1,5 @@
 set fish_greeting
+set fish_color_command blue
 
 if status is-interactive
     # Commands to run in interactive sessions can go here
