@@ -25,6 +25,9 @@ vim.g.rustaceanvim = {
 			vim.keymap.set("n", "<Leader>ca", function()
 				vim.cmd.RustLsp("codeAction")
 			end, opts)
+			vim.keymap.set("n", "K", function()
+				vim.cmd.RustLsp({ "hover", "actions" })
+			end, opts)
 		end,
 	},
 	-- DAP configuration
