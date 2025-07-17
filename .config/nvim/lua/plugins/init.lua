@@ -40,15 +40,18 @@ return {
 		lazy = false,
 	},
 
-	{
-		"mg979/vim-visual-multi",
-		lazy = false,
-	},
-
 	-- {
-	-- 	"nvim-pack/nvim-spectre",
+	-- 	"mg979/vim-visual-multi",
 	-- 	lazy = false,
 	-- },
+
+	{
+		"nvim-pack/nvim-spectre",
+		lazy = false,
+		config = function()
+			require("configs.nvim-spectre")
+		end,
+	},
 
 	{
 		"NoahTheDuke/vim-just",
