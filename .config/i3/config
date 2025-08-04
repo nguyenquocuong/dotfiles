@@ -31,13 +31,15 @@ exec_always --no-startup-id picom
 exec_always --no-startup-id ibus-daemon -drx
 exec_always --no-startup-id $HOME/.fehbg
 exec_always --no-startup-id mons -a -x $HOME/dotfiles/scripts/multi-monitors.sh
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh --cuts
 
 # run once
 #exec --no-startup-id xfsettingsd
 
 # needed for super to launch rofi through ksuperkey, see ~/.xprofile
-bindsym $Mod+d exec --no-startup-id $HOME/.config/polybar/cuts/scripts/launcher.sh
+bindsym $Mod+d exec --no-startup-id /usr/bin/rofi_run --drun
+
+# logout script
+bindsym $Mod+x exec --no-startup-id /usr/bin/rofi_run --logout
 
 #############         Bindings           ##################
 
@@ -51,9 +53,6 @@ bindsym $Mod+q          exec --no-startup-id networkmanager_dmenu
 bindsym $Mod+w          exec --no-startup-id google-chrome-stable
 bindsym $Mod+e          exec --no-startup-id Thunar
 bindsym $Mod+Return     exec --no-startup-id alacritty
-
-# logout script
-bindsym $Mod+x exec --no-startup-id $HOME/.config/polybar/cuts/scripts/powermenu.sh
 
 # Flameshot
 bindsym --release Shift+Print exec --no-startup-id flameshot gui

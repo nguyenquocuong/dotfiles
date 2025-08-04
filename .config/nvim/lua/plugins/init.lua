@@ -37,13 +37,22 @@ return {
 
 	{
 		"christoomey/vim-tmux-navigator",
-		lazy = false,
+		cmd = {
+			"TmuxNavigateLeft",
+			"TmuxNavigateDown",
+			"TmuxNavigateUp",
+			"TmuxNavigateRight",
+			"TmuxNavigatePrevious",
+			"TmuxNavigatorProcessList",
+		},
+		keys = {
+			{ "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
+			{ "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
+			{ "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
+			{ "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+			{ "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+		},
 	},
-
-	-- {
-	-- 	"mg979/vim-visual-multi",
-	-- 	lazy = false,
-	-- },
 
 	{
 		"nvim-pack/nvim-spectre",
@@ -64,6 +73,14 @@ return {
 		event = "VeryLazy",
 		config = function()
 			require("configs.nvim-surround")
+		end,
+	},
+
+	{
+		"windwp/nvim-ts-autotag",
+		ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+		config = function()
+			require("nvim-ts-autotag").setup()
 		end,
 	},
 }

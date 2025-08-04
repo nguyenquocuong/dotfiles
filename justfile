@@ -4,10 +4,18 @@ root_dir := source_dir()
 
 install: install_pkgs
 
+yay:
+  #!/bin/bash
+
+  git clone https://aur.archlinux.org/yay.git ~/yay
+  cd ~/yay
+  makepkg -si
+  rm -rf ~/yay
+
 install_pkgs:
   #!/bin/bash
   
-  sudo pacman -S --noconfirm less lxsession-gtk3 xorg-server git gitui github-cli alacritty tmux rofi dunst polybar neovim exa bat zoxide ripgrep picom
+  sudo pacman -S --noconfirm gtk2 less lxsession-gtk3 xorg-server git gitui github-cli alacritty tmux rofi dunst polybar neovim exa bat zoxide ripgrep picom tmux unzip
   sudo pacman -S --noconfirm pipewire pavucontrol playerctl pamixer brightnessctl
 
   # Bluetooth
@@ -22,7 +30,7 @@ install_pkgs:
   sudo pacman -S ttf-firacode-nerd ttf-font-awesome
   yay -S --noconfirm noto-fonts noto-fonts-emoji noto-fonts-cjk noto-fonts-extra
   
-  # sudo cp rofi_run /usr/local/bin
+  sudo cp rofi_run /usr/local/bin
 
 update_mirrors:
   #!/bin/bash
