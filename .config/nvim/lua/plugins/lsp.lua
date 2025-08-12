@@ -11,7 +11,13 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "ts_ls", "pyright", "gopls" },
+        ensure_installed = {
+          "lua_ls",
+          "ts_ls",
+          "eslint-lsp",
+          "pyright",
+          "gopls"
+        },
       })
     end,
   },
@@ -20,11 +26,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     config = function()
-      local lspconfig = require("lspconfig")
-      local servers = { "lua_ls", "ts_ls", "pyright", "gopls" }
-      for _, server in ipairs(servers) do
-        lspconfig[server].setup({})
-      end
+      require("configs.lspconfig")
     end,
   },
 }
