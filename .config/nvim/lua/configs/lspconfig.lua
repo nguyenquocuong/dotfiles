@@ -23,6 +23,7 @@ if ok_cmp then
 end
 
 local servers = {
+  lua_ls = {},
   html = {},
   cssls = {},
   bashls = {},

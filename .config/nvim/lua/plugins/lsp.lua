@@ -14,7 +14,7 @@ return {
         ensure_installed = {
           "lua_ls",
           "ts_ls",
-          "eslint-lsp",
+          "eslint",
           "pyright",
           "gopls"
         },
