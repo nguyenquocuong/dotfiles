@@ -6,7 +6,7 @@ opt.relativenumber = true -- Relative line numbers
 opt.cursorline = true     -- Highlight current line
 opt.termguicolors = true  -- True color support
 opt.signcolumn = "yes"    -- Always show sign column
-opt.wrap = false          -- No line wrap by default
+opt.wrap = true           -- No line wrap by default
 opt.scrolloff = 8         -- Keep cursor away from screen edge
 opt.sidescrolloff = 8     -- Same for horizontal scroll
 

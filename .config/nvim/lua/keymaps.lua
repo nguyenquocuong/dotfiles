@@ -26,4 +26,16 @@ map({ "n", "x" }, "<leader>fm", function()
   require("conform").format { lsp_fallback = true }
 end, { desc = "general format file" })
 
-map("n", "<leader>x", ":bd<CR>", { desc = "Delete buffer" })
+map("n", "<leader>x", function()
+  local current_buf = vim.api.nvim_get_current_buf()
+
+  -- Try to switch to the alternate buffer
+  local ok = pcall(vim.cmd, "buffer #")
+  if not ok then
+    -- If no alternate buffer, open an empty one
+    vim.cmd("enew")
+  end
+
+  -- Now delete the previous buffer
+  vim.api.nvim_buf_delete(current_buf, { force = false })
+end, { desc = "Delete buffer" })
