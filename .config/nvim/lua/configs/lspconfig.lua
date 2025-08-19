@@ -51,11 +51,6 @@ local servers = {
     },
   },
 
-  eslint = {
-    on_attach,
-    capabilities,
-  },
-
   terraformls = {
     on_attach,
     capabilities,
