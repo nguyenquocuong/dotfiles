@@ -68,8 +68,57 @@ return {
   {
     "nvim-tree/nvim-tree.lua",
     cmd = { "NvimTreeToggle", "NvimTreeFocus" },
-    opts = function()
-      require("nvim-tree").setup({})
+    config = function()
+      require("nvim-tree").setup({
+        sort_by = "case_sensitive",
+        view = {
+          width = 35,
+          side = "left",
+          preserve_window_proportions = true,
+        },
+        renderer = {
+          group_empty = true,
+          highlight_git = true,
+          highlight_opened_files = "all",
+          icons = {
+            show = {
+              file = true,
+              folder = true,
+              folder_arrow = true,
+              git = true,
+            },
+          },
+        },
+        filters = {
+          dotfiles = false, -- set to true if you want to hide dotfiles
+          custom = { "^.git$", "node_modules" },
+        },
+        actions = {
+          open_file = {
+            quit_on_open = false, -- keep tree open when you open a file
+            resize_window = true,
+          },
+        },
+        git = {
+          enable = true,
+          ignore = false,
+          timeout = 200,
+        },
+        update_focused_file = {
+          enable = true,
+          update_cwd = true,
+        }
+      })
+
+      -- Always focus current file when opening NvimTree
+      vim.api.nvim_create_autocmd("BufEnter", {
+        callback = function()
+          local api = require("nvim-tree.api")
+          if api.tree.is_visible() then
+            api.tree.find_file({ open = true, focus = false })
+          end
+        end,
+      })
     end,
   },
 

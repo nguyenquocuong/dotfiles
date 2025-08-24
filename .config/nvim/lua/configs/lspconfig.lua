@@ -23,11 +23,32 @@ if ok_cmp then
 end
 
 local servers = {
-  lua_ls = {},
   html = {},
   cssls = {},
   bashls = {},
+  pyright = {},
   zls = {},
+
+  lua_ls = {
+    settings = {
+      Lua = {
+        runtime = {
+          -- Tell lua_ls to use LuaJIT runtime (what Neovim uses)
+          version = "LuaJIT",
+        },
+        diagnostics = {
+          -- Recognize the `vim` global
+          globals = { "vim" },
+        },
+        workspace = {
+          -- Make the server aware of Neovim runtime files
+          library = vim.api.nvim_get_runtime_file("", true),
+          checkThirdParty = false, -- turn off prompt for third party libraries
+        },
+        telemetry = { enable = false },
+      },
+    },
+  },
 
   ts_ls = {
     on_attach = function(client, bufnr)

@@ -27,15 +27,39 @@ map({ "n", "x" }, "<leader>fm", function()
 end, { desc = "general format file" })
 
 map("n", "<leader>x", function()
-  local current_buf = vim.api.nvim_get_current_buf()
+  local api = vim.api
+  local buf = api.nvim_get_current_buf()
 
-  -- Try to switch to the alternate buffer
-  local ok = pcall(vim.cmd, "buffer #")
-  if not ok then
-    -- If no alternate buffer, open an empty one
-    vim.cmd("enew")
+  -- Check if buffer is modified
+  if vim.bo.modified then
+    vim.notify("Buffer has unsaved changes!", vim.log.levels.WARN)
+    return
   end
 
-  -- Now delete the previous buffer
-  vim.api.nvim_buf_delete(current_buf, { force = false })
+  -- Try switching to the alternate buffer first
+  local alt = vim.fn.bufnr("#")
+  if alt > 0 and api.nvim_buf_is_loaded(alt) and alt ~= buf then
+    vim.cmd("buffer #")
+  else
+    -- Otherwise, try the last buffer in this window's buffer list
+    local buflist = vim.fn.getbufinfo({ buflisted = 1 })
+    local last_buf = nil
+    for _, b in ipairs(buflist) do
+      if b.bufnr ~= buf then
+        last_buf = b.bufnr
+      end
+    end
+
+    if last_buf then
+      vim.cmd("buffer " .. last_buf)
+    else
+      -- If no other buffer exists, create a new empty one
+      vim.cmd("enew")
+    end
+  end
+
+  -- Finally, delete the old buffer
+  if api.nvim_buf_is_loaded(buf) then
+    vim.cmd("bdelete! " .. buf)
+  end
 end, { desc = "Delete buffer" })
