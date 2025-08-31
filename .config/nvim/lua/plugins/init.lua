@@ -25,4 +25,18 @@ return {
 			require("nvim-surround").setup({})
 		end,
 	},
+
+	{
+		"mg979/vim-visual-multi",
+		branch = "master",
+		lazy = false,
+		init = function()
+			vim.g.VM_maps = {
+				["Find Under"] = "<C-d>",
+				["Find Subword Under"] = "<C-d>",
+				["Add Cursor Down"] = "<C-j>",
+				["Add Cursor Up"] = "<C-k>",
+			}
+		end,
+	},
 }
