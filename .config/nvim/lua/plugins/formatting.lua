@@ -7,6 +7,7 @@ return {
 
       conform.setup({
         formatters_by_ft = {
+          json = { "jq" },
           lua = { "stylua" },
           sql = { "sleek" },
           python = { "isort", "black" },
