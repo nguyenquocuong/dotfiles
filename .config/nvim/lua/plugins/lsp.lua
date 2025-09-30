@@ -16,7 +16,8 @@ return {
           "ts_ls",
           "eslint",
           "pyright",
-          "gopls"
+          "gopls",
+          "ruff",
         },
       })
     end,

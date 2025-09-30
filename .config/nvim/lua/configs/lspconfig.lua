@@ -11,8 +11,12 @@ local on_attach = function(_, bufnr)
   keymap("n", "gi", vim.lsp.buf.implementation, opts)
   keymap("n", "<leader>rn", vim.lsp.buf.rename, opts)
   keymap("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-  keymap("n", "[d", vim.diagnostic.goto_prev, opts)
-  keymap("n", "]d", vim.diagnostic.goto_next, opts)
+  keymap("n", "]d", function()
+    vim.diagnostic.jump({ count = 1, float = true })
+  end, opts)
+  keymap("n", "[d", function()
+    vim.diagnostic.jump({ count = 1, float = true })
+  end, opts)
 end
 
 -- Capabilities (for completion plugin like nvim-cmp)
@@ -28,6 +32,15 @@ local servers = {
   bashls = {},
   pyright = {},
   zls = {},
+
+  ruff = {
+    on_attach = on_attach,
+    init_options = {
+      settings = {
+        logLevel = 'debug'
+      }
+    }
+  },
 
   lua_ls = {
     settings = {

@@ -10,7 +10,7 @@ return {
           json = { "jq" },
           lua = { "stylua" },
           sql = { "sleek" },
-          python = { "isort", "black" },
+          python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
           typescript = { "prettier" },
           typescriptreact = { "prettier" },
           javascript = { "prettier" },

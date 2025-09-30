@@ -24,6 +24,15 @@ return {
         },
         highlight = { enable = true },
         indent = { enable = true },
+        incremental_selection = {
+          enable = true,
+          keymaps = {
+            init_selection = "s",
+            node_incremental = "s",
+            scope_incremental = "s",
+            node_decremental = "S",
+          },
+        },
       })
     end,
   },
