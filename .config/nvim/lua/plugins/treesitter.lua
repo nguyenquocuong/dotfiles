@@ -29,7 +29,7 @@ return {
           keymaps = {
             init_selection = "s",
             node_incremental = "s",
-            scope_incremental = "s",
+            -- scope_incremental = "s",
             node_decremental = "S",
           },
         },
