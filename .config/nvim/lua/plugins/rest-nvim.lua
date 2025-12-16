@@ -13,6 +13,13 @@ return {
       vim.keymap.set("n", "<leader>rs", "<cmd>Rest env select<CR>", { desc = "Rest select env" })
       vim.keymap.set("n", "<leader>rr", "<cmd>Rest run<CR>", { desc = "Run rest command" })
       vim.keymap.set("n", "<leader>rl", "<cmd>Rest run last<CR>", { desc = "Run last rest command" })
+
+      ---@type rest.Opts
+      vim.g.rest_nvim = {
+        request = {
+          skip_ssl_verification = true
+        }
+      }
     end,
   },
 }

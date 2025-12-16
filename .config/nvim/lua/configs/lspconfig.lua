@@ -111,9 +111,8 @@ local servers = {
     on_attach,
     -- on_init = nvlsp.on_init,
     capabilities,
-    cmd = { "gopls", "serve" },
+    cmd = { "gopls" },
     filetypes = { "go", "gomod" },
-    root_dir = lspconfig.util.root_pattern("go.mod", ".git"),
     settings = {
       gopls = {
         gofumpt = true,
