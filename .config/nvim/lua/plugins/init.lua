@@ -94,5 +94,9 @@ return {
       hl(0, "MultiCursorDisabledVisual", { link = "Visual" })
       hl(0, "MultiCursorDisabledSign", { link = "SignColumn" })
     end
+  },
+  {
+    "OXY2DEV/markview.nvim",
+    lazy = false,
   }
 }
