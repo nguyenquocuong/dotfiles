@@ -99,6 +99,11 @@ polybar_config:
   # 4. Clean up by removing the temporary directory
   rm -rf /tmp/polybar-themes
 
+omf:
+  #!/bin/bash
+
+  curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
+
 mons_install:
   #!/bin/bash
 
