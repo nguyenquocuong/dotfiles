@@ -68,9 +68,11 @@ tpm_install:
 neovim_install:
   #!/bin/bash
 
-  git clone https://github.com/NvChad/starter ~/.config/nvim
-  rm -rf ~/.config/nvim/lua
-  ln -s ~/dotfiles/.config/nvim/lua ~/.config/nvim/lua
+  # git clone https://github.com/LazyVim/starter ~/.config/nvim
+  # rm -rf ~/.config/nvim/.git
+  # rm -rf ~/.config/nvim/lua
+  # ln -s ~/dotfiles/.config/nvim/lua ~/.config/nvim/lua
+  ln -s ~/dotfiles/.config/nvim ~/.config/nvim
 
 neovim_config: neovim_install
 
