@@ -32,6 +32,9 @@ install_pkgs:
   
   sudo cp rofi_run /usr/local/bin
 
+  # GTK dark mode
+  gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+
 update_mirrors:
   #!/bin/bash
 

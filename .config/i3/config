@@ -38,12 +38,13 @@ exec_always --no-startup-id mons -a -x $HOME/dotfiles/scripts/multi-monitors.sh
 
 # run once
 #exec --no-startup-id xfsettingsd
+exec --no-startup-id dbus-update-activation-environment --systemd DISPLAY XAUTHORITY
 
 # needed for super to launch rofi through ksuperkey, see ~/.xprofile
-bindsym $Mod+d exec --no-startup-id /usr/bin/rofi_run --drun
+bindsym $Mod+d exec --no-startup-id /usr/local/bin/rofi_run --drun
 
 # logout script
-bindsym $Mod+x exec --no-startup-id /usr/bin/rofi_run --logout
+bindsym $Mod+x exec --no-startup-id /usr/local/bin/rofi_run --logout
 
 #############         Bindings           ##################
 
