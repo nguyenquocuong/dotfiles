@@ -2,11 +2,13 @@ set shell := ["/bin/bash", "-c"]
 
 root_dir := source_dir()
 
+# Full first-time machine setup in logical order
+setup: yay install_pkgs config fish_setup neovim_install tpm_install xorg_config systemd_config sound_setup
+
 install: install_pkgs
 
 yay:
   #!/bin/bash
-
   git clone https://aur.archlinux.org/yay.git ~/yay
   cd ~/yay
   makepkg -si
@@ -14,8 +16,7 @@ yay:
 
 install_pkgs:
   #!/bin/bash
-  
-  sudo pacman -S --noconfirm gtk2 less lxsession-gtk3 xorg-server git gitui github-cli alacritty tmux rofi dunst polybar neovim exa bat zoxide ripgrep picom tmux unzip
+  sudo pacman -S --noconfirm gtk2 less lxsession-gtk3 xorg-server git gitui github-cli alacritty tmux rofi dunst polybar neovim exa bat zoxide ripgrep picom unzip
   sudo pacman -S --noconfirm pipewire pavucontrol playerctl pamixer brightnessctl
 
   # Bluetooth
@@ -29,89 +30,73 @@ install_pkgs:
   # Fonts
   sudo pacman -S ttf-firacode-nerd ttf-font-awesome
   yay -S --noconfirm noto-fonts noto-fonts-emoji noto-fonts-cjk noto-fonts-extra
-  
-  sudo cp rofi_run /usr/local/bin
+
+  sudo cp {{root_dir}}/scripts/rofi_run /usr/local/bin/rofi_run
 
   # GTK dark mode
   gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 
 update_mirrors:
   #!/bin/bash
-
   sudo pacman -Syyu
   sudo pacman -S --noconfirm reflector
   sudo reflector --latest 5 --sort rate --save /etc/pacman.d/mirrorlist --country Vietnam,Singapore,WorldWide
 
+# Symlink all user configs into ~/.config and ~/
 config:
   #!/bin/bash
+  ln -snf {{root_dir}}/.xinitrc ~/.xinitrc
 
-  cp ./.xinitrc ./.gtkrc-2.0 .tmux.conf ~/
+  mkdir -p ~/.config
+  ln -snf {{root_dir}}/.config/alacritty  ~/.config/alacritty
+  ln -snf {{root_dir}}/.config/dunst       ~/.config/dunst
+  ln -snf {{root_dir}}/.config/i3          ~/.config/i3
+  ln -snf {{root_dir}}/.config/nvim        ~/.config/nvim
+  ln -snf {{root_dir}}/.config/picom       ~/.config/picom
+  ln -snf {{root_dir}}/.config/polybar     ~/.config/polybar
+  ln -snf {{root_dir}}/.config/rofi        ~/.config/rofi
 
-  cp -r ./.config/alacritty ~/.config/
-  cp -r ./.config/rofi ~/.config/
-  cp -r ./.config/polybar ~/.config/
-  cp -r ./.config/dunst ~/.config/
+  mkdir -p ~/.config/tmux
+  ln -snf {{root_dir}}/.config/tmux/tmux.conf      ~/.config/tmux/tmux.conf
+  ln -snf {{root_dir}}/.config/tmux/tmuxline_theme  ~/.config/tmux/tmuxline_theme
 
 sound_setup:
   #!/bin/bash
-
   pactl load-module module-switch-on-connect
 
 fish_setup:
   #!/bin/bash
-
-  cp -r .config/fish ~/.config/
-
-  # Change default shell to fish
-  chsh -s `which fish`
+  ln -snf {{root_dir}}/.config/fish ~/.config/fish
+  chsh -s $(which fish)
 
 tpm_install:
-  [ ! -d "~/.tmux/plugins/tpm" ] && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+  [ ! -d ~/.tmux/plugins/tpm ] && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm || true
 
 neovim_install:
   #!/bin/bash
-
-  # git clone https://github.com/LazyVim/starter ~/.config/nvim
-  # rm -rf ~/.config/nvim/.git
-  # rm -rf ~/.config/nvim/lua
-  # ln -s ~/dotfiles/.config/nvim/lua ~/.config/nvim/lua
-  ln -s ~/dotfiles/.config/nvim ~/.config/nvim
+  ln -snf {{root_dir}}/.config/nvim ~/.config/nvim
 
 neovim_config: neovim_install
 
 neovim_uninstall:
   #!/bin/bash
+  rm -rf ~/.config/nvim ~/.local/state/nvim ~/.local/share/nvim
 
-  rm -rf ~/.config/nvim
-  rm -rf ~/.local/state/nvim
-  rm -rf ~/.local/share/nvim
-
-# Install and configure polybar themes using adi1090x/polybar-themes
+# Install adi1090x polybar themes then layer dotfiles config on top
 polybar_config:
   #!/bin/bash
-
   TMPDIR=/tmp/polybar-themes
-
-  # 1. Clone the polybar-themes repository to a temporary directory
   git clone --depth=1 https://github.com/adi1090x/polybar-themes.git $TMPDIR
-
-  # 2. Run the setup script from the cloned repository
   cd $TMPDIR && ./setup.sh <<< 2
-
-  # 3. Copy the user's polybar config from the source directory to ~/.config
-  cp -r {{root_dir}}/.config/polybar ~/.config
-
-  # 4. Clean up by removing the temporary directory
+  cp -r {{root_dir}}/.config/polybar/. ~/.config/polybar/
   rm -rf /tmp/polybar-themes
 
 omf:
   #!/bin/bash
-
   curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
 
 mons_install:
   #!/bin/bash
-
   git clone --recursive https://github.com/Ventto/mons.git
   cd mons
   sudo make install
@@ -120,16 +105,9 @@ mons_install:
 
 xorg_config:
   #!/bin/bash
-
-  # Copy Xorg configuration files
-  sudo cp {{root_dir}}/Xorg/xorg.conf.d/* /etc/X11/xorg.conf.d/
-
-  # Enable compositor
-  sudo cp -r {{root_dir}}/picom ~/.config
+  sudo cp {{root_dir}}/X11/xorg.conf.d/* /etc/X11/xorg.conf.d/
 
 systemd_config:
   #!/bin/bash
-
-  # Enable betterlockscreen
   sudo cp {{root_dir}}/systemd/system/betterlockscreen.service /usr/lib/systemd/system/betterlockscreen@$USER.service
   sudo systemctl enable betterlockscreen@$USER.service

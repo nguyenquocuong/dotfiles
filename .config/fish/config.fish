@@ -1,6 +1,8 @@
 set fish_greeting
 set fish_color_command blue
 
+fish_add_path ~/.local/bin
+
 if status is-interactive
     # Commands to run in interactive sessions can go here
   fenv source /etc/profile
