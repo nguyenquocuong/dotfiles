@@ -45,7 +45,7 @@ update_mirrors:
 # Symlink all user configs into ~/.config and ~/
 config:
   #!/bin/bash
-  # ln -snf {{root_dir}}/.xinitrc ~/.xinitrc
+  ln -snf {{root_dir}}/.xinitrc ~/.xinitrc
 
   mkdir -p ~/.config
   ln -snf {{root_dir}}/.config/alacritty   ~/.config/alacritty
