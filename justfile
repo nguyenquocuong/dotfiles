@@ -25,7 +25,8 @@ install_pkgs:
   # Applications
   sudo pacman -S --noconfirm vlc feh flameshot lxappearance-gtk3 papirus-icon-theme
   sudo pacman -S --noconfirm thunar catfish gvfs thunar-volman thunar-archive-plugin thunar-media-tags-plugin
-  yay -S --noconfirm arc-gtk-theme ibus-bamboo google-chrome betterlockscreen
+  sudo pacman -S --noconfirm fcitx5-bamboo fcitx5-configtool
+  yay -S --noconfirm arc-gtk-theme google-chrome betterlockscreen
 
   # Fonts
   sudo pacman -S ttf-firacode-nerd ttf-font-awesome
@@ -40,7 +41,7 @@ update_mirrors:
   #!/bin/bash
   sudo pacman -Syyu
   sudo pacman -S --noconfirm reflector
-  sudo reflector --latest 5 --sort rate --save /etc/pacman.d/mirrorlist --country Vietnam,Singapore,WorldWide
+  sudo reflector --latest 5 --protocol https --sort rate --save /etc/pacman.d/mirrorlist --country Vietnam,Singapore,WorldWide
 
 # Symlink all user configs into ~/.config and ~/
 config:
