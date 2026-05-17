@@ -45,19 +45,19 @@ update_mirrors:
 # Symlink all user configs into ~/.config and ~/
 config:
   #!/bin/bash
-  ln -snf {{root_dir}}/.xinitrc ~/.xinitrc
+  # ln -snf {{root_dir}}/.xinitrc ~/.xinitrc
 
   mkdir -p ~/.config
-  ln -snf {{root_dir}}/.config/alacritty  ~/.config/alacritty
+  ln -snf {{root_dir}}/.config/alacritty   ~/.config/alacritty
   ln -snf {{root_dir}}/.config/dunst       ~/.config/dunst
   ln -snf {{root_dir}}/.config/i3          ~/.config/i3
   ln -snf {{root_dir}}/.config/nvim        ~/.config/nvim
   ln -snf {{root_dir}}/.config/picom       ~/.config/picom
-  ln -snf {{root_dir}}/.config/polybar     ~/.config/polybar
+  # ln -snf {{root_dir}}/.config/polybar     ~/.config/polybar
   ln -snf {{root_dir}}/.config/rofi        ~/.config/rofi
 
   mkdir -p ~/.config/tmux
-  ln -snf {{root_dir}}/.config/tmux/tmux.conf      ~/.config/tmux/tmux.conf
+  ln -snf {{root_dir}}/.config/tmux/tmux.conf       ~/.config/tmux/tmux.conf
   ln -snf {{root_dir}}/.config/tmux/tmuxline_theme  ~/.config/tmux/tmuxline_theme
 
 sound_setup:

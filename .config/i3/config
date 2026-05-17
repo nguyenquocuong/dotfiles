@@ -32,7 +32,7 @@ set $mon2 DP-1
 
 # run with reload
 exec_always --no-startup-id picom
-exec_always --no-startup-id ibus-daemon -drx
+exec_always --no-startup-id fcitx5 -d
 exec_always --no-startup-id $HOME/.fehbg
 exec_always --no-startup-id mons -a -x $HOME/dotfiles/scripts/multi-monitors.sh
 
