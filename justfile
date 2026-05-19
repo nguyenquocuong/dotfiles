@@ -3,7 +3,7 @@ set shell := ["/bin/bash", "-c"]
 root_dir := source_dir()
 
 # Full first-time machine setup in logical order
-setup: yay install_pkgs config fish_setup neovim_install tpm_install xorg_config systemd_config sound_setup
+setup: yay install_pkgs config neovim_install tpm_install xorg_config systemd_config sound_setup
 
 install: install_pkgs
 
@@ -46,9 +46,12 @@ update_mirrors:
 # Symlink all user configs into ~/.config and ~/
 config:
   #!/bin/bash
+  mkdir -p ~/.config ~/.config/tmux
+
   ln -snf {{root_dir}}/.xinitrc ~/.xinitrc
 
-  mkdir -p ~/.config
+  ln -snf {{root_dir}}/.config/fish        ~/.config/fish
+  ln -snf {{root_dir}}/.config/omf         ~/.config/omf
   ln -snf {{root_dir}}/.config/alacritty   ~/.config/alacritty
   ln -snf {{root_dir}}/.config/dunst       ~/.config/dunst
   ln -snf {{root_dir}}/.config/i3          ~/.config/i3
@@ -57,18 +60,14 @@ config:
   # ln -snf {{root_dir}}/.config/polybar     ~/.config/polybar
   ln -snf {{root_dir}}/.config/rofi        ~/.config/rofi
 
-  mkdir -p ~/.config/tmux
   ln -snf {{root_dir}}/.config/tmux/tmux.conf       ~/.config/tmux/tmux.conf
   ln -snf {{root_dir}}/.config/tmux/tmuxline_theme  ~/.config/tmux/tmuxline_theme
+
+  # chsh -s $(which fish)
 
 sound_setup:
   #!/bin/bash
   pactl load-module module-switch-on-connect
-
-fish_setup:
-  #!/bin/bash
-  ln -snf {{root_dir}}/.config/fish ~/.config/fish
-  chsh -s $(which fish)
 
 tpm_install:
   [ ! -d ~/.tmux/plugins/tpm ] && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm || true

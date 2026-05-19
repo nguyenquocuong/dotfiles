@@ -16,3 +16,4 @@ end
 
 eval $(ssh-agent -c) &>/dev/null
 
+zoxide init fish | source
