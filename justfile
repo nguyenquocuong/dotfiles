@@ -95,6 +95,10 @@ omf:
   #!/bin/bash
   curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
 
+omf_uninstall:
+  #!/bin/bash
+  rm -rf ~/.config/omf ~/.local/share/omf
+
 mons_install:
   #!/bin/bash
   git clone --recursive https://github.com/Ventto/mons.git
