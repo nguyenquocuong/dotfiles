@@ -44,7 +44,7 @@ update_mirrors:
   sudo reflector --latest 5 --protocol https --sort rate --save /etc/pacman.d/mirrorlist --country Vietnam,Singapore,WorldWide
 
 # Symlink all user configs into ~/.config and ~/
-config:
+config: claude_config
   #!/bin/bash
   mkdir -p ~/.config ~/.config/tmux
 
@@ -64,6 +64,12 @@ config:
   ln -snf {{root_dir}}/.config/tmux/tmuxline_theme  ~/.config/tmux/tmuxline_theme
 
   # chsh -s $(which fish)
+
+# Symlink the Claude Code statusline script into ~/.claude
+claude_config:
+  #!/bin/bash
+  mkdir -p ~/.claude
+  ln -snf {{root_dir}}/scripts/claude-statusline.sh ~/.claude/statusline.sh
 
 sound_setup:
   #!/bin/bash
