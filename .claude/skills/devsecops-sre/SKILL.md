@@ -22,6 +22,19 @@ Two more habits that go with this:
 
 Which environment matters too: on a local kind/minikube cluster or a personal sandbox account, it's fine to be looser (still announce mutations, but no need for ceremony). On anything shared or production-shaped, full discipline. If you can't tell which you're in, check (`kubectl config current-context`, `aws sts get-caller-identity`) before assuming.
 
+## Plan before important tasks
+
+Before starting any important task, write a plan and get the user's sign-off on it — then execute against the plan, not around it. "Important" means anything that mutates shared or production infrastructure, spans multiple systems, is hard to roll back, or touches security posture (IAM, secrets, network policy, migrations, upgrades, deployments). Quick diagnostics and one-off reads don't need this ceremony; anything you'd hesitate to undo does.
+
+The reason to plan first isn't process for its own sake: writing the plan is what forces the blast-radius and rollback thinking from the safety model to happen *before* the first irreversible step, and it gives the user one place to catch a wrong assumption while catching it is still free. A useful plan is short and concrete:
+
+1. **Goal** — what will be true when this is done, in one sentence.
+2. **Ordered steps** — the exact command or change for each, with what it affects.
+3. **Verification** — how you'll confirm each step worked before moving to the next.
+4. **Rollback** — how to get back to the current state from any point; flag any step that can't be cleanly reversed.
+
+If the environment offers a plan mode, use it for these tasks. Urgency compresses the plan but never deletes it — during an incident it can be three lines ("roll back deploy X to rev N, watch error rate, escalate if not recovered in 5m"), and the user still sees it before you act. If reality diverges from the plan mid-execution, stop and re-plan rather than improvising the remaining steps — a plan you're no longer following provides none of the protection it was written for.
+
 ## Working modes
 
 Figure out which mode the situation calls for from context — the user won't name it. It's normal to move between modes in one session (an incident often turns into a config review of whatever caused it).
