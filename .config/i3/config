@@ -280,7 +280,7 @@ assign [class="(?i)(?:geany)"]   → 2
 assign [class="(?i)(?:thunar)"]  → 3
 
 # focus, floating, & sticky
-for_window [class="(?i)(?:qt5ct|pinentry|alacritty|brave-browser)"]          floating enable, focus
+for_window [class="(?i)(?:qt5ct|pinentry|alacritty|brave-browser|flameshot)"]          floating enable, focus
 for_window [title="(?i)(?:copying|deleting|moving)"] floating enable
 for_window [window_role="(?i)(?:pop-up|setup)"]      floating enable
 
