@@ -65,10 +65,11 @@ config: claude_config
 
   # chsh -s $(which fish)
 
-# Symlink the Claude Code statusline script and skills into ~/.claude
+# Symlink Claude Code global instructions and statusline script into ~/.claude
 claude_config:
   #!/bin/bash
   mkdir -p ~/.claude ~/.claude/skills
+  ln -snf {{root_dir}}/.claude/CLAUDE.md ~/.claude/CLAUDE.md
   ln -snf {{root_dir}}/scripts/claude-statusline.sh ~/.claude/statusline.sh
 
   # Symlink each custom skill into ~/.claude/skills
