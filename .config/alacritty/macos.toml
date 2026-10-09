@@ -1,0 +1,9 @@
+[font]
+size = 11
+
+[terminal.shell]
+program = "/opt/homebrew/bin/fish"
+
+[window]
+decorations = "None"
+startup_mode = "Windowed"

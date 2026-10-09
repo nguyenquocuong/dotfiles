@@ -1,0 +1,13 @@
+[env]
+WINIT_X11_SCALE_FACTOR = "1.75"
+XCURSOR_SIZE = "32"
+
+[font]
+size = 6
+
+[terminal.shell]
+program = "/usr/bin/fish"
+
+[window]
+decorations = "full"
+startup_mode = "Maximized"
