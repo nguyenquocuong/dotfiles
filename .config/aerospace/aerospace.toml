@@ -54,7 +54,7 @@ gaps.outer.right = 0
 
 [mode.main.binding]
 # Apps
-alt-enter = 'exec-and-forget /opt/homebrew/bin/wezterm cli spawn --new-window || open -a WezTerm'
+alt-enter = 'exec-and-forget /opt/homebrew/bin/wezterm cli --no-auto-start spawn --new-window || open -a WezTerm'
 alt-w = 'exec-and-forget open -a Zen'
 alt-e = 'exec-and-forget open ~'
 
