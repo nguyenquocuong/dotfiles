@@ -26,6 +26,8 @@ brew "cargo-nextest"
 brew "uv"
 
 # Network
+# tailscaled runs as a boot daemon so the Mac is reachable without a GUI login:
+#   sudo brew services start tailscale
 brew "tailscale"
 
 # Desktop
@@ -38,7 +40,6 @@ cask "font-fira-code-nerd-font"
 # Apps
 cask "zen"
 cask "spotify"
-cask "tailscale-app"
 cask "visual-studio-code"
 cask "microsoft-teams"
 cask "ngrok"

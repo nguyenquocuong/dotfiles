@@ -7,7 +7,7 @@ root_dir := source_dir()
 setup: yay install_pkgs config neovim_install tpm_install xorg_config systemd_config sound_setup
 
 [macos]
-setup: install_pkgs config tpm_install macos_defaults
+setup: install_pkgs config tpm_install macos_defaults tailscale_daemon
 
 [linux]
 install: install_pkgs
@@ -65,6 +65,12 @@ brew_dump:
 [macos]
 macos_defaults:
   {{root_dir}}/scripts/macos-defaults.sh
+
+# Do not install the Tailscale GUI app next to this daemon.
+# Run tailscaled at boot, so the Mac is reachable before GUI login
+[macos]
+tailscale_daemon:
+  sudo brew services start tailscale
 
 [linux]
 update_mirrors:
