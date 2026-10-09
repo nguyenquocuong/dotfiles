@@ -33,7 +33,6 @@ brew "tailscale"
 # Desktop
 cask "nikitabobko/tap/aerospace"
 cask "raycast"
-# Alacritty: the cask is disabled (fails Gatekeeper), install it from GitHub releases.
 cask "wezterm"
 cask "font-fira-code-nerd-font"
 

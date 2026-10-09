@@ -92,6 +92,7 @@ config_shared:
   ln -snf {{root_dir}}/.config/fish        ~/.config/fish
   ln -snf {{root_dir}}/.config/omf         ~/.config/omf
   ln -snf {{root_dir}}/.config/alacritty   ~/.config/alacritty
+  ln -snf {{root_dir}}/.config/wezterm     ~/.config/wezterm
   ln -snf {{root_dir}}/.config/nvim        ~/.config/nvim
   ln -snf {{root_dir}}/.config/mise        ~/.config/mise
 

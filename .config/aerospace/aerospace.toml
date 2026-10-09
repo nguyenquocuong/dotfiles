@@ -54,7 +54,7 @@ gaps.outer.right = 0
 
 [mode.main.binding]
 # Apps
-alt-enter = 'exec-and-forget open -n -a Alacritty'
+alt-enter = 'exec-and-forget /opt/homebrew/bin/wezterm cli spawn --new-window || open -a WezTerm'
 alt-w = 'exec-and-forget open -a Zen'
 alt-e = 'exec-and-forget open ~'
 
@@ -166,5 +166,5 @@ if.app-id = 'com.apple.finder'
 run = 'move-node-to-workspace 3'
 
 [[on-window-detected]]
-if.app-id = 'org.alacritty'
+if.app-id = 'com.github.wez.wezterm'
 run = 'layout floating'
