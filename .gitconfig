@@ -1,0 +1,19 @@
+[user]
+	name = Cuong Nguyen
+	email = nguyenquocuong.it@gmail.com
+[init]
+	defaultBranch = main
+[core]
+	editor = nvim
+[pull]
+	rebase = true
+[push]
+	autoSetupRemote = true
+[fetch]
+	prune = true
+[rebase]
+	autoStash = true
+[diff]
+	algorithm = histogram
+[merge]
+	conflictStyle = zdiff3
