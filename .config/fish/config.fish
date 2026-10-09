@@ -20,7 +20,8 @@ end
 
 fish_add_path --global ~/.local/bin ~/.cargo/bin
 
-if type -q mise
+# Homebrew's vendor_conf.d/mise-activate.fish may already have activated mise
+if type -q mise; and not functions -q __mise_env_eval
     if status is-interactive
         mise activate fish | source
     else
