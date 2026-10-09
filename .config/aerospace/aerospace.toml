@@ -67,10 +67,6 @@ alt-h = 'focus --boundaries all-monitors-outer-frame left'
 alt-j = 'focus --boundaries all-monitors-outer-frame down'
 alt-k = 'focus --boundaries all-monitors-outer-frame up'
 alt-l = 'focus --boundaries all-monitors-outer-frame right'
-alt-left = 'focus --boundaries all-monitors-outer-frame left'
-alt-down = 'focus --boundaries all-monitors-outer-frame down'
-alt-up = 'focus --boundaries all-monitors-outer-frame up'
-alt-right = 'focus --boundaries all-monitors-outer-frame right'
 alt-o = 'focus-monitor --wrap-around next'
 
 # Move window
@@ -78,14 +74,10 @@ alt-shift-h = 'move --boundaries all-monitors-outer-frame left'
 alt-shift-j = 'move --boundaries all-monitors-outer-frame down'
 alt-shift-k = 'move --boundaries all-monitors-outer-frame up'
 alt-shift-l = 'move --boundaries all-monitors-outer-frame right'
-alt-shift-left = 'move --boundaries all-monitors-outer-frame left'
-alt-shift-down = 'move --boundaries all-monitors-outer-frame down'
-alt-shift-up = 'move --boundaries all-monitors-outer-frame up'
-alt-shift-right = 'move --boundaries all-monitors-outer-frame right'
 
 # Layout
 alt-space = 'layout floating tiling'
-alt-f = 'fullscreen'
+alt-shift-f = 'fullscreen'
 alt-shift-t = 'layout accordion horizontal' # i3: layout tabbed
 alt-shift-s = 'layout accordion vertical'   # i3: layout stacking
 alt-slash = 'layout tiles horizontal vertical'
