@@ -32,7 +32,6 @@ brew "tailscale"
 
 # Desktop
 cask "nikitabobko/tap/aerospace"
-cask "raycast"
 cask "wezterm"
 cask "font-fira-code-nerd-font"
 
