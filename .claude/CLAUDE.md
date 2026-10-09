@@ -37,8 +37,14 @@ These are common instructions for Cuong's agents across all scenarios.
 
 - The shell is fish, not bash.
   Use fish syntax for any command you tell me to run, for example `set -x X Y` instead of `export X=Y`.
-- The OS is Arch Linux.
-  Use `pacman` or `yay` for packages, never `apt`. Use `systemctl` for services.
+- The main machine is a MacBook (macOS, Apple Silicon).
+  Use Homebrew for packages and record new ones in `~/dotfiles/Brewfile`.
+  Use `launchctl` or `brew services` for services.
+  Remember macOS ships BSD tools (`sed`, `find`, `date`), not GNU.
+- Some machines still run Arch Linux.
+  There, use `pacman` or `yay` for packages, never `apt`, and `systemctl` for services.
+- Dotfiles live in `~/dotfiles` and are linked with `just config`.
+  Edit the files in `~/dotfiles`, not the symlinks.
 - Do not run `sudo` commands without asking first.
 
 # Communication
