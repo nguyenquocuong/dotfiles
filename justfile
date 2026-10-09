@@ -138,7 +138,7 @@ sound_setup:
   pactl load-module module-switch-on-connect
 
 tpm_install:
-  [ ! -d ~/.tmux/plugins/tpm ] && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm || true
+  [ ! -d ~/.config/tmux/plugins/tpm ] && git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm || true
 
 neovim_install:
   #!/bin/bash
