@@ -23,10 +23,9 @@ return {
         close_on_exit = true,
         shell = vim.o.shell,      -- Shell to use
         float_opts = {
-          border = "single",
+          border = vim.o.winborder,
           width = math.floor(vim.o.columns * 0.5),
           height = math.floor(vim.o.lines * 0.4),
-          winblend = 3,
         },
       })
 
@@ -37,10 +36,9 @@ return {
         hidden = true,
         direction = "float",
         float_opts = {
-          border = "single",
+          border = vim.o.winborder,
           width = math.floor(vim.o.columns * 0.9),
           height = math.floor(vim.o.lines * 0.9),
-          winblend = 3,
         },
       })
 

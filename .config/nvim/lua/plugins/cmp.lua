@@ -65,10 +65,10 @@ return {
             luasnip.lsp_expand(args.body)
           end,
         },
-        -- Borders give the transparent menus a visible edge
+        -- Borders (from 'winborder') give the transparent menus a visible edge
         window = {
-          completion = cmp.config.window.bordered({ border = "rounded" }),
-          documentation = cmp.config.window.bordered({ border = "rounded" }),
+          completion = cmp.config.window.bordered(),
+          documentation = cmp.config.window.bordered(),
         },
         mapping = cmp.mapping.preset.insert({
           ["<Tab>"] = cmp.mapping(function(fallback)

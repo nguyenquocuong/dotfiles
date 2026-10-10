@@ -10,7 +10,7 @@ return {
           spelling = { enabled = true }, -- shows spelling suggestions
         },
         win = {
-          border = "single",
+          border = vim.o.winborder,
         },
       })
     end,

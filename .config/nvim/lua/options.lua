@@ -9,6 +9,7 @@ opt.signcolumn = "yes"    -- Always show sign column
 opt.wrap = true           -- No line wrap by default
 opt.scrolloff = 8         -- Keep cursor away from screen edge
 opt.sidescrolloff = 8     -- Same for horizontal scroll
+opt.winborder = "rounded" -- Default border for floating windows
 
 -- Indentation
 opt.expandtab = true   -- Tabs -> spaces
