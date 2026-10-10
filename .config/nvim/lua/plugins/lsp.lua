@@ -19,6 +19,10 @@ return {
           "gopls",
           "ruff",
         },
+        -- rustaceanvim starts rust-analyzer itself; a second instance doubles diagnostics
+        automatic_enable = {
+          exclude = { "rust_analyzer" },
+        },
       })
     end,
   },
