@@ -25,6 +25,10 @@ config.colors = {
 }
 config.default_cursor_style = "SteadyBlock"
 
+-- A little transparency, with blur on macOS so text stays readable
+config.window_background_opacity = 0.92
+config.macos_window_background_blur = 20
+
 -- No title bar, still resizable. tmux handles tabs, so hide the tab bar.
 config.window_decorations = "RESIZE"
 config.hide_tab_bar_if_only_one_tab = true
