@@ -1,29 +1,43 @@
-local lspconfig = require("lspconfig")
+-- LSP keymaps (when any server attaches).
+-- An autocmd instead of per-server on_attach, so nvim-lspconfig's own on_attach
+-- (e.g. ts_ls and clangd user commands) is not replaced.
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("lsp_keymaps", { clear = true }),
+  callback = function(args)
+    local bufnr = args.buf
+    local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+    local opts = { noremap = true, silent = true, buffer = bufnr }
+    local keymap = vim.keymap.set
 
--- LSP keymaps (when server attaches)
-local on_attach = function(_, bufnr)
-  local opts = { noremap = true, silent = true, buffer = bufnr }
-  local keymap = vim.keymap.set
+    keymap("n", "K", vim.lsp.buf.hover, opts)
+    keymap("n", "gd", vim.lsp.buf.definition, opts)
+    keymap("n", "gr", vim.lsp.buf.references, opts)
+    keymap("n", "gi", vim.lsp.buf.implementation, opts)
+    keymap("n", "<leader>rn", vim.lsp.buf.rename, opts)
+    keymap("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+    keymap("n", "]d", function()
+      vim.diagnostic.jump({ count = 1, float = true })
+    end, opts)
+    keymap("n", "[d", function()
+      vim.diagnostic.jump({ count = -1, float = true })
+    end, opts)
 
-  keymap("n", "K", vim.lsp.buf.hover, opts)
-  keymap("n", "gd", vim.lsp.buf.definition, opts)
-  keymap("n", "gr", vim.lsp.buf.references, opts)
-  keymap("n", "gi", vim.lsp.buf.implementation, opts)
-  keymap("n", "<leader>rn", vim.lsp.buf.rename, opts)
-  keymap("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-  keymap("n", "]d", function()
-    vim.diagnostic.jump({ count = 1, float = true })
-  end, opts)
-  keymap("n", "[d", function()
-    vim.diagnostic.jump({ count = 1, float = true })
-  end, opts)
-end
+    if client.name == "ts_ls" then
+      keymap("n", "fO", function()
+        client:exec_cmd({
+          command = "_typescript.organizeImports",
+          arguments = { vim.api.nvim_buf_get_name(bufnr) },
+          title = "",
+        }, { bufnr = bufnr })
+      end, opts)
+    end
+  end,
+})
 
--- Capabilities (for completion plugin like nvim-cmp)
-local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- Capabilities (for completion plugin like nvim-cmp), shared by all servers
 local ok_cmp, cmp_lsp = pcall(require, "cmp_nvim_lsp")
 if ok_cmp then
-  capabilities = cmp_lsp.default_capabilities(capabilities)
+  vim.lsp.config("*", { capabilities = cmp_lsp.default_capabilities() })
 end
 
 local servers = {
@@ -34,7 +48,6 @@ local servers = {
   zls = {},
 
   ruff = {
-    on_attach = on_attach,
     init_options = {
       settings = {
         logLevel = 'debug'
@@ -64,19 +77,6 @@ local servers = {
   },
 
   ts_ls = {
-    on_attach = function(client, bufnr)
-      on_attach(client, bufnr)
-
-      vim.keymap.set("n", "fO", function()
-        vim.lsp.client.exec_cmd(client, {
-          command = "_typescript.organizeImports",
-          arguments = { vim.api.nvim_buf_get_name(0) },
-          title = "",
-        })
-      end, { buffer = bufnr })
-    end,
-    -- on_init = nvlsp.on_init,
-    capabilities,
     init_options = {
       preferences = {
         importModuleSpecifierPreference = "relative",
@@ -86,15 +86,10 @@ local servers = {
   },
 
   terraformls = {
-    on_attach,
-    capabilities,
     filetypes = { "terraform", "tf" },
   },
 
   clangd = {
-    on_attach,
-    -- on_init = nvlsp.on_init,
-    capabilities,
     cmd = {
       "clangd",
       "--background-index",
@@ -104,13 +99,10 @@ local servers = {
       "--query-driver=/usr/bin/clang*",
     },
     filetypes = { "c", "cpp" },
-    root_dir = lspconfig.util.root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
+    root_markers = { "compile_commands.json", "compile_flags.txt", ".git" },
   },
 
   gopls = {
-    on_attach,
-    -- on_init = nvlsp.on_init,
-    capabilities,
     cmd = { "gopls" },
     filetypes = { "go", "gomod" },
     settings = {
@@ -126,6 +118,6 @@ local servers = {
 }
 
 for name, opts in pairs(servers) do
-  vim.lsp.enable(name)       -- nvim v0.11.0 or above required
   vim.lsp.config(name, opts) -- nvim v0.11.0 or above required
+  vim.lsp.enable(name)       -- nvim v0.11.0 or above required
 end
