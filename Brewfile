@@ -17,6 +17,8 @@ brew "ripgrep"
 brew "tree"
 brew "zoxide"
 brew "telnet"
+# nvim-treesitter builds parsers with it
+brew "tree-sitter-cli"
 
 # Languages and toolchains
 brew "mise"
