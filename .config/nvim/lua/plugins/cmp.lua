@@ -100,7 +100,7 @@ return {
           { name = "nvim_lsp" },
           { name = "luasnip" },
           { name = "buffer" },
-          { name = "path" },
+          { name = "async_path" },
         }),
       })
     end,
