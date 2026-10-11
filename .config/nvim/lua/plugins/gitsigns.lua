@@ -47,7 +47,7 @@ return {
         map("n", "<leader>ghs", gitsigns.stage_hunk)
         map("n", "<leader>ghr", gitsigns.reset_hunk)
 
-        map("v", "<leader>hs", function()
+        map("v", "<leader>ghs", function()
           gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
         end)
 
