@@ -4,6 +4,9 @@ set fish_color_command blue
 switch (uname)
     case Darwin
         /opt/homebrew/bin/brew shellenv fish | source
+
+        # SSH clients often do not forward LANG; without a UTF-8 locale, tmux renders non-ASCII as "_"
+        test -n "$LANG"; or set -gx LANG en_US.UTF-8
     case Linux
         if status is-interactive
             fenv source /etc/profile
