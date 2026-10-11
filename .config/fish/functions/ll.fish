@@ -1,3 +1,3 @@
-function ll --wraps=ls --wraps='exa -la' --description 'alias ll=exa -la'
+function ll --wraps='eza -la' --description 'alias ll=eza -la'
   eza -la $argv
 end

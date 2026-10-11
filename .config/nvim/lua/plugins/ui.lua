@@ -15,17 +15,7 @@ return {
       { "[B",         "<cmd>BufferLineMovePrev<cr>",             desc = "Move buffer prev" },
       { "]B",         "<cmd>BufferLineMoveNext<cr>",             desc = "Move buffer next" },
     },
-    config = function(_, opts)
-      require("bufferline").setup(opts)
-      -- Fix bufferline when restoring a session
-      vim.api.nvim_create_autocmd({ "BufAdd", "BufDelete" }, {
-        callback = function()
-          vim.schedule(function()
-            pcall(nvim_bufferline)
-          end)
-        end,
-      })
-    end,
+    opts = {},
   },
 
   -- Statusline

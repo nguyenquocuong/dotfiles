@@ -10,18 +10,8 @@ return {
         opts = { history = true, updateevents = "TextChanged,TextChangedI" },
         config = function(_, opts)
           require("luasnip").config.set_config(opts)
-
-          -- vscode format
-          require("luasnip.loaders.from_vscode").lazy_load({ exclude = vim.g.vscode_snippets_exclude or {} })
-          require("luasnip.loaders.from_vscode").lazy_load({ paths = vim.g.vscode_snippets_path or "" })
-
-          -- snipmate format
-          require("luasnip.loaders.from_snipmate").load()
-          require("luasnip.loaders.from_snipmate").lazy_load({ paths = vim.g.snipmate_snippets_path or "" })
-
-          -- lua format
-          require("luasnip.loaders.from_lua").load()
-          require("luasnip.loaders.from_lua").lazy_load({ paths = vim.g.lua_snippets_path or "" })
+          -- friendly-snippets uses the vscode format
+          require("luasnip.loaders.from_vscode").lazy_load()
         end,
       },
 
@@ -44,7 +34,6 @@ return {
       -- cmp sources plugins
       {
         "saadparwaiz1/cmp_luasnip",
-        "hrsh7th/cmp-nvim-lua",
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",
         "https://codeberg.org/FelipeLema/cmp-async-path.git",

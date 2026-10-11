@@ -44,11 +44,7 @@ if ok_cmp then
 end
 
 local servers = {
-  html = {},
-  cssls = {},
-  bashls = {},
   pyright = {},
-  zls = {},
 
   ruff = {
     init_options = {
@@ -86,10 +82,6 @@ local servers = {
         importModuleSpecifierEnding = "minimal",
       },
     },
-  },
-
-  terraformls = {
-    filetypes = { "terraform", "tf" },
   },
 
   clangd = {

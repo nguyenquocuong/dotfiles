@@ -8,10 +8,7 @@ return {
       conform.setup({
         formatters_by_ft = {
           json = { "jq" },
-          lua = { "stylua" },
-          sql = { "sleek" },
           python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
-          go = { "gofumpt", "goimports" },
           typescript = { "prettier", "biome", "biome-organize-imports" },
           typescriptreact = { "prettier", "biome", "biome-organize-imports" },
           javascript = { "prettier" },

@@ -35,6 +35,11 @@ style = "Block"
 
 [env]
 TERM = "xterm-256color"
+WINIT_X11_SCALE_FACTOR = "1.75"
+XCURSOR_SIZE = "32"
+
+[font]
+size = 6
 
 [font.bold]
 family = "FiraCode Nerd Font"
@@ -83,11 +88,6 @@ action = "DecreaseFontSize"
 key = "Minus"
 mods = "Control"
 
-[[keyboard.bindings]]
-action = "DecreaseFontSize"
-key = "Minus"
-mods = "Control"
-
 [mouse]
 hide_when_typing = true
 
@@ -96,10 +96,13 @@ history = 10000
 multiplier = 3
 
 [terminal.shell]
+program = "/usr/bin/fish"
 args = ["--command", "tmux"]
 
 [window]
+decorations = "full"
 dynamic_padding = true
+startup_mode = "Maximized"
 title = "Alacritty"
 
 [window.class]
@@ -107,6 +110,4 @@ general = "Alacritty"
 instance = "Alacritty"
 
 [general]
-# OS-specific settings. `just config` links os.toml to linux.toml or macos.toml.
-import = ["os.toml"]
 live_config_reload = true

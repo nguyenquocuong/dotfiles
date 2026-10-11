@@ -4,7 +4,7 @@ root_dir := source_dir()
 
 # Full first-time machine setup in logical order
 [linux]
-setup: yay install_pkgs config neovim_install tpm_install xorg_config systemd_config sound_setup
+setup: yay install_pkgs config tpm_install xorg_config systemd_config sound_setup
 
 [macos]
 setup: install_pkgs config tpm_install macos_defaults tailscale_daemon
@@ -91,16 +91,11 @@ config_shared:
 
   ln -snf {{root_dir}}/.config/fish        ~/.config/fish
   ln -snf {{root_dir}}/.config/omf         ~/.config/omf
-  ln -snf {{root_dir}}/.config/alacritty   ~/.config/alacritty
   ln -snf {{root_dir}}/.config/wezterm     ~/.config/wezterm
   ln -snf {{root_dir}}/.config/nvim        ~/.config/nvim
   ln -snf {{root_dir}}/.config/mise        ~/.config/mise
 
-  ln -snf {{root_dir}}/.config/tmux/tmux.conf       ~/.config/tmux/tmux.conf
-  ln -snf {{root_dir}}/.config/tmux/tmuxline_theme  ~/.config/tmux/tmuxline_theme
-
-  # Alacritty imports os.toml for OS-specific settings
-  ln -snf {{os()}}.toml {{root_dir}}/.config/alacritty/os.toml
+  ln -snf {{root_dir}}/.config/tmux/tmux.conf ~/.config/tmux/tmux.conf
 
   # chsh -s $(which fish)
 
@@ -109,6 +104,7 @@ config_os:
   #!/bin/bash
   ln -snf {{root_dir}}/.xinitrc ~/.xinitrc
 
+  ln -snf {{root_dir}}/.config/alacritty   ~/.config/alacritty
   ln -snf {{root_dir}}/.config/dunst       ~/.config/dunst
   ln -snf {{root_dir}}/.config/i3          ~/.config/i3
   ln -snf {{root_dir}}/.config/picom       ~/.config/picom
@@ -139,12 +135,6 @@ sound_setup:
 
 tpm_install:
   [ ! -d ~/.config/tmux/plugins/tpm ] && git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm || true
-
-neovim_install:
-  #!/bin/bash
-  ln -snf {{root_dir}}/.config/nvim ~/.config/nvim
-
-neovim_config: neovim_install
 
 neovim_uninstall:
   #!/bin/bash

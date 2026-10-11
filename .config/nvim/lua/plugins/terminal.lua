@@ -28,23 +28,6 @@ return {
           height = math.floor(vim.o.lines * 0.4),
         },
       })
-
-      -- Optional: Quick floating terminal with lazygit
-      local Terminal = require("toggleterm.terminal").Terminal
-      local lazygit = Terminal:new({
-        cmd = "lazygit",
-        hidden = true,
-        direction = "float",
-        float_opts = {
-          border = vim.o.winborder,
-          width = math.floor(vim.o.columns * 0.9),
-          height = math.floor(vim.o.lines * 0.9),
-        },
-      })
-
-      vim.keymap.set("n", "<leader>gg", function()
-        lazygit:toggle()
-      end, { noremap = true, silent = true, desc = "Toggle lazygit" })
     end
   }
 }
