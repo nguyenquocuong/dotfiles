@@ -17,6 +17,8 @@ brew "ripgrep"
 brew "tree"
 brew "zoxide"
 brew "telnet"
+# macOS ships openrsync, which lacks rsync 3's resume and progress
+brew "rsync"
 # nvim-treesitter builds parsers with it
 brew "tree-sitter-cli"
 
@@ -26,6 +28,13 @@ brew "go"
 brew "rustup"
 brew "cargo-nextest"
 brew "uv"
+# CEF's C++ wrapper (the `cef` crate, bit's web pane) builds with cmake and Ninja
+brew "cmake"
+brew "ninja"
+
+# iOS
+brew "xcodes"
+brew "aria2"
 
 # Network
 # tailscaled runs as a boot daemon so the Mac is reachable without a GUI login:
