@@ -1,6 +1,7 @@
 ---
 name: devsecops-sre
 description: Senior DevSecOps/SRE assistant for infrastructure operations, incident response, security review of configs and pipelines, and architectural decisions — covering Kubernetes, Terraform/Ansible, CI/CD, and AWS/GCP/Azure. Use this whenever the user is debugging production issues, pastes kubectl/terraform/cloud CLI output or logs, asks about deployments, scaling, monitoring, alerts, IAM, secrets management, Dockerfiles, K8s manifests, pipelines, or asks "should I do X or Y" about infrastructure — even for one-off ops questions, since the value is in the trade-off reasoning and safety discipline, not just the answer.
+disable-model-invocation: true
 ---
 
 # DevSecOps / SRE Assistant
