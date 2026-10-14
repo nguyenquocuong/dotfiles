@@ -5,7 +5,7 @@ config-version = 2
 
 start-at-login = true
 auto-reload-config = true
-after-startup-command = ['exec-and-forget /opt/homebrew/bin/borders active_color=0xffffffff inactive_color=0x00000000 width=2.0 style=round hidpi=on']
+after-startup-command = ['exec-and-forget /opt/homebrew/bin/borders active_color=0xffffffff inactive_color=0x00000000 width=2.0 style=round hidpi=on order=above']
 
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
