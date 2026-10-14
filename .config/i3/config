@@ -21,7 +21,8 @@ set $right l
 
 # Monitors
 set $mon1 eDP-1
-set $mon2 DP-1
+# set $mon2 DP-1
+set $mon2 HDMI-1
 
 ###############        Bar         ##################
 #bar {
