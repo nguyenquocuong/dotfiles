@@ -5,7 +5,7 @@ config-version = 2
 
 start-at-login = true
 auto-reload-config = true
-after-startup-command = []
+after-startup-command = ['exec-and-forget /opt/homebrew/bin/borders active_color=0xffffffff inactive_color=0x00000000 width=2.0 style=round hidpi=on']
 
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
@@ -24,10 +24,10 @@ key-mapping.preset = 'qwerty'
 
 gaps.inner.horizontal = 4
 gaps.inner.vertical = 4
-gaps.outer.left = 0
-gaps.outer.bottom = 0
-gaps.outer.top = 0
-gaps.outer.right = 0
+gaps.outer.left = 4
+gaps.outer.bottom = 4
+gaps.outer.top = 4
+gaps.outer.right = 4
 
 # Workspaces 1-10 on the main monitor, 11-20 on the second one (like i3 $mon1/$mon2).
 [workspace-to-monitor-force-assignment]

@@ -1,4 +1,5 @@
 tap "nikitabobko/tap"
+tap "FelixKratz/formulae"
 
 # Shell and CLI
 brew "fish"
@@ -40,6 +41,7 @@ brew "aria2"
 # tailscaled runs as a boot daemon so the Mac is reachable without a GUI login:
 #   sudo brew services start tailscale
 brew "tailscale"
+brew "FelixKratz/formulae/borders"
 
 # Desktop
 cask "nikitabobko/tap/aerospace"
