@@ -31,6 +31,8 @@ set $mon2 DP-1
 ###############     Autostart      ##################
 
 # run with reload
+# Give systemd user services (xdg-desktop-portal-gtk, file dialogs) the X display.
+exec_always --no-startup-id systemctl --user import-environment DISPLAY XAUTHORITY
 exec_always --no-startup-id picom
 exec_always --no-startup-id fcitx5 -d
 exec_always --no-startup-id $HOME/.fehbg
