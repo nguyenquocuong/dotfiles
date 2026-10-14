@@ -41,6 +41,8 @@ gaps.outer.right = 0
 8 = 'main'
 9 = 'main'
 10 = 'main'
+B = 'main'
+T = 'main'
 11 = 'secondary'
 12 = 'secondary'
 13 = 'secondary'
@@ -112,6 +114,10 @@ alt-shift-7 = 'exec-and-forget ~/dotfiles/scripts/aerospace-workspace.sh move 7'
 alt-shift-8 = 'exec-and-forget ~/dotfiles/scripts/aerospace-workspace.sh move 8'
 alt-shift-9 = 'exec-and-forget ~/dotfiles/scripts/aerospace-workspace.sh move 9'
 alt-shift-0 = 'exec-and-forget ~/dotfiles/scripts/aerospace-workspace.sh move 10'
+alt-b = 'workspace B'
+alt-shift-b = 'move-node-to-workspace --focus-follows-window B'
+alt-t = 'workspace T'
+alt-ctrl-t = 'move-node-to-workspace --focus-follows-window T'
 alt-ctrl-1 = 'workspace 11'
 alt-ctrl-2 = 'workspace 12'
 alt-ctrl-3 = 'workspace 13'
@@ -152,7 +158,7 @@ alt-shift-l = ['join-with right', 'mode main']
 # App rules (i3: assign / for_window)
 [[on-window-detected]]
 if.app-id = 'app.zen-browser.zen'
-run = 'move-node-to-workspace 1'
+run = 'move-node-to-workspace B'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.finder'
@@ -160,4 +166,4 @@ run = 'move-node-to-workspace 3'
 
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
-run = 'layout floating'
+run = ['layout floating', 'move-node-to-workspace T']
