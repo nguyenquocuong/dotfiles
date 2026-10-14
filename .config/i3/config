@@ -98,78 +98,109 @@ workspace 18 output $mon2
 workspace 19 output $mon2
 workspace 20 output $mon2
 
-# switch to workspace
-bindsym $Mod+1 workspace 1
-bindsym $Mod+2 workspace 2
-bindsym $Mod+3 workspace 3
-bindsym $Mod+4 workspace 4
-bindsym $Mod+5 workspace 5
-bindsym $Mod+6 workspace 6
-bindsym $Mod+7 workspace 7
-bindsym $Mod+8 workspace 8
-bindsym $Mod+9 workspace 9
-bindsym $Mod+0 workspace 10
-bindsym $Mod+Control+1 workspace 11
-bindsym $Mod+Control+2 workspace 12
-bindsym $Mod+Control+3 workspace 13
-bindsym $Mod+Control+4 workspace 14
-bindsym $Mod+Control+5 workspace 15
-bindsym $Mod+Control+6 workspace 16
-bindsym $Mod+Control+7 workspace 17
-bindsym $Mod+Control+8 workspace 18
-bindsym $Mod+Control+9 workspace 19
-bindsym $Mod+Control+0 workspace 20
+# Workspace N on the monitor that has focus, see scripts/i3-ws.sh
+set $ws $HOME/dotfiles/scripts/i3-ws.sh
 
-# switch to workspace - numpad alternatives
-bindsym $Mod+Mod2+KP_1 workspace 1
-bindsym $Mod+Mod2+KP_2 workspace 2
-bindsym $Mod+Mod2+KP_3 workspace 3
-bindsym $Mod+Mod2+KP_4 workspace 4
-bindsym $Mod+Mod2+KP_5 workspace 5
-bindsym $Mod+Mod2+KP_6 workspace 6
-bindsym $Mod+Mod2+KP_7 workspace 7
-bindsym $Mod+Mod2+KP_8 workspace 8
-bindsym $Mod+Mod2+KP_9 workspace 9
-bindsym $Mod+Mod2+KP_0 workspace 0
+# switch to workspace N on the focused monitor
+bindsym $Mod+1 exec --no-startup-id $ws $mon1 go 1
+bindsym $Mod+2 exec --no-startup-id $ws $mon1 go 2
+bindsym $Mod+3 exec --no-startup-id $ws $mon1 go 3
+bindsym $Mod+4 exec --no-startup-id $ws $mon1 go 4
+bindsym $Mod+5 exec --no-startup-id $ws $mon1 go 5
+bindsym $Mod+6 exec --no-startup-id $ws $mon1 go 6
+bindsym $Mod+7 exec --no-startup-id $ws $mon1 go 7
+bindsym $Mod+8 exec --no-startup-id $ws $mon1 go 8
+bindsym $Mod+9 exec --no-startup-id $ws $mon1 go 9
+bindsym $Mod+0 exec --no-startup-id $ws $mon1 go 10
+
+# switch to workspace N on the focused monitor - numpad alternatives
+bindsym $Mod+Mod2+KP_1 exec --no-startup-id $ws $mon1 go 1
+bindsym $Mod+Mod2+KP_2 exec --no-startup-id $ws $mon1 go 2
+bindsym $Mod+Mod2+KP_3 exec --no-startup-id $ws $mon1 go 3
+bindsym $Mod+Mod2+KP_4 exec --no-startup-id $ws $mon1 go 4
+bindsym $Mod+Mod2+KP_5 exec --no-startup-id $ws $mon1 go 5
+bindsym $Mod+Mod2+KP_6 exec --no-startup-id $ws $mon1 go 6
+bindsym $Mod+Mod2+KP_7 exec --no-startup-id $ws $mon1 go 7
+bindsym $Mod+Mod2+KP_8 exec --no-startup-id $ws $mon1 go 8
+bindsym $Mod+Mod2+KP_9 exec --no-startup-id $ws $mon1 go 9
+bindsym $Mod+Mod2+KP_0 exec --no-startup-id $ws $mon1 go 10
+
+# move focused container to workspace N on the focused monitor
+bindsym $Mod+Shift+1 exec --no-startup-id $ws $mon1 move 1
+bindsym $Mod+Shift+2 exec --no-startup-id $ws $mon1 move 2
+bindsym $Mod+Shift+3 exec --no-startup-id $ws $mon1 move 3
+bindsym $Mod+Shift+4 exec --no-startup-id $ws $mon1 move 4
+bindsym $Mod+Shift+5 exec --no-startup-id $ws $mon1 move 5
+bindsym $Mod+Shift+6 exec --no-startup-id $ws $mon1 move 6
+bindsym $Mod+Shift+7 exec --no-startup-id $ws $mon1 move 7
+bindsym $Mod+Shift+8 exec --no-startup-id $ws $mon1 move 8
+bindsym $Mod+Shift+9 exec --no-startup-id $ws $mon1 move 9
+bindsym $Mod+Shift+0 exec --no-startup-id $ws $mon1 move 10
+
+# move focused container to workspace N on the focused monitor - numpad alternatives
+bindsym $Mod+Shift+Mod2+KP_1 exec --no-startup-id $ws $mon1 move 1
+bindsym $Mod+Shift+Mod2+KP_2 exec --no-startup-id $ws $mon1 move 2
+bindsym $Mod+Shift+Mod2+KP_3 exec --no-startup-id $ws $mon1 move 3
+bindsym $Mod+Shift+Mod2+KP_4 exec --no-startup-id $ws $mon1 move 4
+bindsym $Mod+Shift+Mod2+KP_5 exec --no-startup-id $ws $mon1 move 5
+bindsym $Mod+Shift+Mod2+KP_6 exec --no-startup-id $ws $mon1 move 6
+bindsym $Mod+Shift+Mod2+KP_7 exec --no-startup-id $ws $mon1 move 7
+bindsym $Mod+Shift+Mod2+KP_8 exec --no-startup-id $ws $mon1 move 8
+bindsym $Mod+Shift+Mod2+KP_9 exec --no-startup-id $ws $mon1 move 9
+bindsym $Mod+Shift+Mod2+KP_0 exec --no-startup-id $ws $mon1 move 10
+
+# switch to workspace N on the other monitor
+bindsym $Mod+Control+1 exec --no-startup-id $ws $mon1 go-other 1
+bindsym $Mod+Control+2 exec --no-startup-id $ws $mon1 go-other 2
+bindsym $Mod+Control+3 exec --no-startup-id $ws $mon1 go-other 3
+bindsym $Mod+Control+4 exec --no-startup-id $ws $mon1 go-other 4
+bindsym $Mod+Control+5 exec --no-startup-id $ws $mon1 go-other 5
+bindsym $Mod+Control+6 exec --no-startup-id $ws $mon1 go-other 6
+bindsym $Mod+Control+7 exec --no-startup-id $ws $mon1 go-other 7
+bindsym $Mod+Control+8 exec --no-startup-id $ws $mon1 go-other 8
+bindsym $Mod+Control+9 exec --no-startup-id $ws $mon1 go-other 9
+bindsym $Mod+Control+0 exec --no-startup-id $ws $mon1 go-other 10
+
+# switch to workspace N on the other monitor - numpad alternatives
+bindsym $Mod+Control+Mod2+KP_1 exec --no-startup-id $ws $mon1 go-other 1
+bindsym $Mod+Control+Mod2+KP_2 exec --no-startup-id $ws $mon1 go-other 2
+bindsym $Mod+Control+Mod2+KP_3 exec --no-startup-id $ws $mon1 go-other 3
+bindsym $Mod+Control+Mod2+KP_4 exec --no-startup-id $ws $mon1 go-other 4
+bindsym $Mod+Control+Mod2+KP_5 exec --no-startup-id $ws $mon1 go-other 5
+bindsym $Mod+Control+Mod2+KP_6 exec --no-startup-id $ws $mon1 go-other 6
+bindsym $Mod+Control+Mod2+KP_7 exec --no-startup-id $ws $mon1 go-other 7
+bindsym $Mod+Control+Mod2+KP_8 exec --no-startup-id $ws $mon1 go-other 8
+bindsym $Mod+Control+Mod2+KP_9 exec --no-startup-id $ws $mon1 go-other 9
+bindsym $Mod+Control+Mod2+KP_0 exec --no-startup-id $ws $mon1 go-other 10
+
+# move focused container to workspace N on the other monitor
+bindsym $Mod+Control+Shift+1 exec --no-startup-id $ws $mon1 move-other 1
+bindsym $Mod+Control+Shift+2 exec --no-startup-id $ws $mon1 move-other 2
+bindsym $Mod+Control+Shift+3 exec --no-startup-id $ws $mon1 move-other 3
+bindsym $Mod+Control+Shift+4 exec --no-startup-id $ws $mon1 move-other 4
+bindsym $Mod+Control+Shift+5 exec --no-startup-id $ws $mon1 move-other 5
+bindsym $Mod+Control+Shift+6 exec --no-startup-id $ws $mon1 move-other 6
+bindsym $Mod+Control+Shift+7 exec --no-startup-id $ws $mon1 move-other 7
+bindsym $Mod+Control+Shift+8 exec --no-startup-id $ws $mon1 move-other 8
+bindsym $Mod+Control+Shift+9 exec --no-startup-id $ws $mon1 move-other 9
+bindsym $Mod+Control+Shift+0 exec --no-startup-id $ws $mon1 move-other 10
+
+# move focused container to workspace N on the other monitor - numpad alternatives
+bindsym $Mod+Control+Shift+Mod2+KP_1 exec --no-startup-id $ws $mon1 move-other 1
+bindsym $Mod+Control+Shift+Mod2+KP_2 exec --no-startup-id $ws $mon1 move-other 2
+bindsym $Mod+Control+Shift+Mod2+KP_3 exec --no-startup-id $ws $mon1 move-other 3
+bindsym $Mod+Control+Shift+Mod2+KP_4 exec --no-startup-id $ws $mon1 move-other 4
+bindsym $Mod+Control+Shift+Mod2+KP_5 exec --no-startup-id $ws $mon1 move-other 5
+bindsym $Mod+Control+Shift+Mod2+KP_6 exec --no-startup-id $ws $mon1 move-other 6
+bindsym $Mod+Control+Shift+Mod2+KP_7 exec --no-startup-id $ws $mon1 move-other 7
+bindsym $Mod+Control+Shift+Mod2+KP_8 exec --no-startup-id $ws $mon1 move-other 8
+bindsym $Mod+Control+Shift+Mod2+KP_9 exec --no-startup-id $ws $mon1 move-other 9
+bindsym $Mod+Control+Shift+Mod2+KP_0 exec --no-startup-id $ws $mon1 move-other 10
 
 # switch to next or previous workspace
 bindsym $Mod+Mod1+Left workspace prev
 bindsym $Mod+Mod1+Right workspace next
 bindsym Mod1+Tab workspace back_and_forth
-
-# move focused container to workspace
-bindsym $Mod+Shift+1 move container to workspace 1; workspace 1
-bindsym $Mod+Shift+2 move container to workspace 2; workspace 2
-bindsym $Mod+Shift+3 move container to workspace 3; workspace 3
-bindsym $Mod+Shift+4 move container to workspace 4; workspace 4
-bindsym $Mod+Shift+5 move container to workspace 5; workspace 5
-bindsym $Mod+Shift+6 move container to workspace 6; workspace 6
-bindsym $Mod+Shift+7 move container to workspace 7; workspace 7
-bindsym $Mod+Shift+8 move container to workspace 8; workspace 8
-bindsym $Mod+Shift+9 move container to workspace 9; workspace 9
-bindsym $Mod+Shift+0 move container to workspace 10; workspace 10
-bindsym $Mod+Control+Shift+1 move container to workspace 11; workspace 11
-bindsym $Mod+Control+Shift+2 move container to workspace 12; workspace 12
-bindsym $Mod+Control+Shift+3 move container to workspace 13; workspace 13
-bindsym $Mod+Control+Shift+4 move container to workspace 14; workspace 14
-bindsym $Mod+Control+Shift+5 move container to workspace 15; workspace 15
-bindsym $Mod+Control+Shift+6 move container to workspace 16; workspace 16
-bindsym $Mod+Control+Shift+7 move container to workspace 17; workspace 17
-bindsym $Mod+Control+Shift+8 move container to workspace 18; workspace 18
-bindsym $Mod+Control+Shift+9 move container to workspace 19; workspace 19
-bindsym $Mod+Control+Shift+0 move container to workspace 20; workspace 20
-
-# move focused container to workspace - numpad alternatives
-bindsym $Mod+Shift+Mod2+KP_1 move container to workspace 1; workspace 1
-bindsym $Mod+Shift+Mod2+KP_2 move container to workspace 2; workspace 2
-bindsym $Mod+Shift+Mod2+KP_3 move container to workspace 3; workspace 3
-bindsym $Mod+Shift+Mod2+KP_4 move container to workspace 4; workspace 4
-bindsym $Mod+Shift+Mod2+KP_5 move container to workspace 5; workspace 5
-bindsym $Mod+Shift+Mod2+KP_6 move container to workspace 6; workspace 7
-bindsym $Mod+Shift+Mod2+KP_7 move container to workspace 7; workspace 7
-bindsym $Mod+Shift+Mod2+KP_8 move container to workspace 8; workspace 8
-bindsym $Mod+Shift+Mod2+KP_9 move container to workspace 9; workspace 9
-bindsym $Mod+Shift+Mod2+KP_0 move container to workspace 10; workspace 10
 
 
 ##############     Reload configs           ################
