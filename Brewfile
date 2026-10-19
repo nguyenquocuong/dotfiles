@@ -24,8 +24,8 @@ brew "rsync"
 brew "tree-sitter-cli"
 
 # Languages and toolchains
+# Runtimes (node, python, go) and DevSecOps CLIs live in .config/mise/config.toml [tools]
 brew "mise"
-brew "go"
 brew "rustup"
 brew "cargo-nextest"
 brew "uv"

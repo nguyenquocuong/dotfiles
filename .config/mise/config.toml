@@ -1,2 +1,40 @@
 [tools]
+# Runtimes
 node = "24"
+# 3.15 is days old; many AI wheels (torch, etc.) do not ship for it yet
+python = "3.14"
+go = "latest"
+
+# Kubernetes and IaC
+kubectl = "latest"
+helm = "latest"
+kind = "latest"
+k9s = "latest"
+opentofu = "latest"
+
+# Supply chain and security scanners
+trivy = "latest"
+syft = "latest"
+grype = "latest"
+cosign = "latest"
+gitleaks = "latest"
+semgrep = "latest"
+hadolint = "latest"
+shellcheck = "latest"
+pre-commit = "latest"
+
+# Secrets and utilities
+sops = "latest"
+age = "latest"
+yq = "latest"
+act = "latest"
+
+# Coding agents without a uyfb adapter, to capture their screens
+"npm:@google/gemini-cli" = "latest"
+# aider pins scipy 1.15, which has no wheels for Python 3.13+
+"pipx:aider-chat" = { version = "latest", uvx_args = "--python 3.12" }
+
+[settings]
+# Activate the .venv that uv creates in a project
+python.uv_venv_auto = true
+
