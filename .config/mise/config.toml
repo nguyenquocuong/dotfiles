@@ -119,6 +119,7 @@ python.uv_venv_auto = "source"
 
 # Arch Linux
 # Not applied yet: copied from the old `just install_pkgs`
+"pacman:mise" = "latest"
 "pacman:gtk2" = "latest"
 "pacman:less" = "latest"
 "pacman:lxsession-gtk3" = "latest"

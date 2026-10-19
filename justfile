@@ -26,7 +26,7 @@ yay:
 [linux]
 install_pkgs:
   #!/bin/bash
-  sudo pacman -S --noconfirm gtk2 less lxsession-gtk3 xorg-server git gitui github-cli alacritty tmux rofi dunst polybar neovim exa bat zoxide ripgrep picom unzip
+  sudo pacman -S --noconfirm mise gtk2 less lxsession-gtk3 xorg-server git gitui github-cli alacritty tmux rofi dunst polybar neovim exa bat zoxide ripgrep picom unzip
   sudo pacman -S --noconfirm pipewire pavucontrol playerctl pamixer brightnessctl
 
   # Bluetooth
@@ -95,52 +95,10 @@ update_mirrors:
   sudo pacman -S --noconfirm reflector
   sudo reflector --latest 5 --protocol https --sort rate --save /etc/pacman.d/mirrorlist --country Vietnam,Singapore,WorldWide
 
-# Symlink all user configs into ~/.config and ~/
-config: claude_config config_shared config_os
-
-# Configs used on every OS
-config_shared:
-  #!/bin/bash
-  mkdir -p ~/.config ~/.config/tmux
-
-  ln -snf {{root_dir}}/.gitconfig ~/.gitconfig
-
-  ln -snf {{root_dir}}/.config/fish        ~/.config/fish
-  ln -snf {{root_dir}}/.config/omf         ~/.config/omf
-  ln -snf {{root_dir}}/.config/wezterm     ~/.config/wezterm
-  ln -snf {{root_dir}}/.config/nvim        ~/.config/nvim
-  ln -snf {{root_dir}}/.config/mise        ~/.config/mise
-
-  ln -snf {{root_dir}}/.config/tmux/tmux.conf ~/.config/tmux/tmux.conf
-
-[linux]
-config_os:
-  #!/bin/bash
-  ln -snf {{root_dir}}/.xinitrc ~/.xinitrc
-
-  ln -snf {{root_dir}}/.config/alacritty   ~/.config/alacritty
-  ln -snf {{root_dir}}/.config/dunst       ~/.config/dunst
-  ln -snf {{root_dir}}/.config/i3          ~/.config/i3
-  ln -snf {{root_dir}}/.config/picom       ~/.config/picom
-  # ln -snf {{root_dir}}/.config/polybar     ~/.config/polybar
-  ln -snf {{root_dir}}/.config/rofi        ~/.config/rofi
-
-[macos]
-config_os:
-  #!/bin/bash
-  ln -snf {{root_dir}}/.config/aerospace   ~/.config/aerospace
-
-# Symlink Claude Code global instructions and statusline script into ~/.claude
-claude_config:
-  #!/bin/bash
-  mkdir -p ~/.claude ~/.claude/skills
-  ln -snf {{root_dir}}/.claude/CLAUDE.md ~/.claude/CLAUDE.md
-  ln -snf {{root_dir}}/scripts/claude-statusline.sh ~/.claude/statusline.sh
-
-  # Symlink each custom skill into ~/.claude/skills
-  for skill in {{root_dir}}/.claude/skills/*/; do
-    ln -snf "$skill" ~/.claude/skills/"$(basename "$skill")"
-  done
+# Symlink all user configs into ~ (the entries live in mise.toml [dotfiles])
+config:
+  mise -C {{root_dir}} trust --all
+  mise -C {{root_dir}} dot apply
 
 [linux]
 sound_setup:

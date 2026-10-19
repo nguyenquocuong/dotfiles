@@ -1,0 +1,32 @@
+# Deploys this repo's configs into ~. Run `just config`, which does:
+#   mise -C ~/dotfiles trust --all   # also trusts .config/mise/config.toml, which mise
+#                                    # reads as project config until ~/.config/mise exists
+#   mise -C ~/dotfiles dot apply     # refuses to overwrite real files; --force replaces them
+
+[dotfiles]
+"~/.gitconfig" = { source = ".gitconfig" }
+"~/.config/fish" = { source = ".config/fish" }
+"~/.config/omf" = { source = ".config/omf" }
+"~/.config/wezterm" = { source = ".config/wezterm" }
+"~/.config/nvim" = { source = ".config/nvim" }
+"~/.config/mise" = { source = ".config/mise" }
+"~/.config/tmux/tmux.conf" = { source = ".config/tmux/tmux.conf" }
+
+# Claude Code. Other tools install skills into ~/.claude/skills too, so link each
+# custom skill folder on its own (symlink-each would link every file inside instead)
+"~/.claude/CLAUDE.md" = { source = ".claude/CLAUDE.md" }
+"~/.claude/statusline.sh" = { source = "scripts/claude-statusline.sh" }
+"~/.claude/skills/devsecops-sre" = { source = ".claude/skills/devsecops-sre" }
+"~/.claude/skills/uyfb" = { source = ".claude/skills/uyfb" }
+
+# macOS
+"~/.config/aerospace" = { source = ".config/aerospace", variants = [{ os = "macos" }] }
+
+# Linux
+"~/.xinitrc" = { source = ".xinitrc", variants = [{ os = "linux" }] }
+"~/.config/alacritty" = { source = ".config/alacritty", variants = [{ os = "linux" }] }
+"~/.config/dunst" = { source = ".config/dunst", variants = [{ os = "linux" }] }
+"~/.config/i3" = { source = ".config/i3", variants = [{ os = "linux" }] }
+"~/.config/picom" = { source = ".config/picom", variants = [{ os = "linux" }] }
+# "~/.config/polybar" = { source = ".config/polybar", variants = [{ os = "linux" }] }
+"~/.config/rofi" = { source = ".config/rofi", variants = [{ os = "linux" }] }
