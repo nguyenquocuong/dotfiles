@@ -7,7 +7,7 @@ root_dir := source_dir()
 setup: yay install_pkgs config tpm_install xorg_config systemd_config sound_setup
 
 [macos]
-setup: install_pkgs config tpm_install macos_defaults tailscale_daemon
+setup: install_pkgs config mise_tools login_shell tpm_install macos_defaults tailscale_daemon
 
 [linux]
 install: install_pkgs
@@ -61,6 +61,22 @@ install_pkgs:
 brew_dump:
   brew bundle dump --force --file {{root_dir}}/Brewfile
 
+# Install the [tools] in .config/mise/config.toml (needs `config` to link it first)
+[macos]
+mise_tools:
+  mise install
+
+# Make Homebrew's fish the login shell
+[macos]
+login_shell:
+  #!/bin/bash
+  set -euo pipefail
+  fish_path="$(brew --prefix)/bin/fish"
+  grep -qxF "$fish_path" /etc/shells || echo "$fish_path" | sudo tee -a /etc/shells >/dev/null
+  if [ "$(dscl . -read ~/ UserShell | awk '{print $2}')" != "$fish_path" ]; then
+    chsh -s "$fish_path"
+  fi
+
 # Apply macOS system settings
 [macos]
 macos_defaults:
@@ -96,8 +112,6 @@ config_shared:
   ln -snf {{root_dir}}/.config/mise        ~/.config/mise
 
   ln -snf {{root_dir}}/.config/tmux/tmux.conf ~/.config/tmux/tmux.conf
-
-  # chsh -s $(which fish)
 
 [linux]
 config_os:
