@@ -36,6 +36,9 @@ act = "latest"
 # aider pins scipy 1.15, which has no wheels for Python 3.13+
 "pipx:aider-chat" = { version = "latest", uvx_args = "--python 3.12" }
 
+# Local LLMs on Apple Silicon (mlx_lm.generate, mlx_lm.server, ...)
+"pipx:mlx-lm" = "latest"
+
 [settings]
 # Activate the .venv that uv creates in a project
 python.uv_venv_auto = "source"
@@ -88,10 +91,8 @@ python.uv_venv_auto = "source"
 "brew:docker" = "latest"
 "brew:docker-compose" = "latest"
 
-# Cloud and AI
+# Cloud
 "brew:awscli" = "latest"
-# MLX builds against Apple's Metal stack; Homebrew ships it ready to run
-"brew:mlx-lm" = "latest"
 
 # iOS
 "brew:xcodes" = "latest"

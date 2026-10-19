@@ -43,10 +43,8 @@ brew "colima"
 brew "docker"
 brew "docker-compose"
 
-# Cloud and AI
+# Cloud
 brew "awscli"
-# MLX builds against Apple's Metal stack; Homebrew ships it ready to run
-brew "mlx-lm"
 
 # iOS
 brew "xcodes"
