@@ -23,8 +23,10 @@ end
 
 fish_add_path --global ~/.local/bin ~/.cargo/bin
 
-# Homebrew's vendor_conf.d/mise-activate.fish may already have activated mise
-if type -q mise; and not functions -q __mise_env_eval
+# Homebrew's vendor_conf.d/mise-activate.fish activates mise before this file runs,
+# then `brew shellenv` above puts /opt/homebrew/bin first again and brew binaries
+# (like a node or python3 pulled in as a dependency) shadow mise tools. Activate again so mise wins.
+if type -q mise
     if status is-interactive
         mise activate fish | source
     else
