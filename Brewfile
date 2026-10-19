@@ -17,6 +17,8 @@ brew "jq"
 brew "ripgrep"
 brew "tree"
 brew "zoxide"
+brew "htop"
+brew "dust"
 brew "telnet"
 # macOS ships openrsync, which lacks rsync 3's resume and progress
 brew "rsync"
@@ -28,10 +30,23 @@ brew "tree-sitter-cli"
 brew "mise"
 brew "rustup"
 brew "cargo-nextest"
+# Linux C cross toolchain: `cargo zigbuild --target x86_64-unknown-linux-gnu` checks uyfb's Linux-only code on macOS
+brew "zig"
+brew "cargo-zigbuild"
 brew "uv"
-# CEF's C++ wrapper (the `cef` crate, bit's web pane) builds with cmake and Ninja
+# CEF's C++ wrapper (the `cef` crate, uyfb's web pane) builds with cmake and Ninja
 brew "cmake"
 brew "ninja"
+
+# Containers: colima runs the Docker VM, docker is only the client
+brew "colima"
+brew "docker"
+brew "docker-compose"
+
+# Cloud and AI
+brew "awscli"
+# MLX builds against Apple's Metal stack; Homebrew ships it ready to run
+brew "mlx-lm"
 
 # iOS
 brew "xcodes"
@@ -55,3 +70,4 @@ cask "visual-studio-code"
 cask "microsoft-teams"
 cask "ngrok"
 cask "claude-code"
+cask "codex"

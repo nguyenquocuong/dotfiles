@@ -4,6 +4,8 @@ node = "24"
 # 3.15 is days old; many AI wheels (torch, etc.) do not ship for it yet
 python = "3.14"
 go = "latest"
+# `mise bootstrap` evaluates tap casks without API metadata (aerospace) with Ruby 3+
+ruby = "3.4"
 
 # Kubernetes and IaC
 kubectl = "latest"
@@ -38,3 +40,133 @@ act = "latest"
 # Activate the .venv that uv creates in a project
 python.uv_venv_auto = true
 
+[bootstrap.brew.taps]
+"nikitabobko/tap" = "https://github.com/nikitabobko/homebrew-tap.git"
+"felixkratz/formulae" = "https://github.com/felixkratz/homebrew-formulae.git"
+
+[bootstrap.packages]
+# Shell and CLI
+"brew:fish" = "latest"
+"brew:tmux" = "latest"
+"brew:neovim" = "latest"
+"brew:git" = "latest"
+"brew:gh" = "latest"
+"brew:gitui" = "latest"
+"brew:just" = "latest"
+"brew:bat" = "latest"
+"brew:eza" = "latest"
+"brew:fd" = "latest"
+"brew:fzf" = "latest"
+"brew:jq" = "latest"
+"brew:ripgrep" = "latest"
+"brew:tree" = "latest"
+"brew:zoxide" = "latest"
+"brew:htop" = "latest"
+"brew:dust" = "latest"
+"brew:telnet" = "latest"
+# macOS ships openrsync, which lacks rsync 3's resume and progress
+"brew:rsync" = "latest"
+# nvim-treesitter builds parsers with it
+"brew:tree-sitter-cli" = "latest"
+
+# Toolchains that stay outside [tools]
+"brew:mise" = "latest"
+# rustup owns the Rust toolchains; mise's rust backend only wraps it
+"brew:rustup" = "latest"
+"brew:cargo-nextest" = "latest"
+# Linux C cross toolchain: `cargo zigbuild --target x86_64-unknown-linux-gnu` checks uyfb's Linux-only code on macOS
+"brew:zig" = "latest"
+"brew:cargo-zigbuild" = "latest"
+# Python packages and venvs; mise provides the interpreter
+"brew:uv" = "latest"
+# CEF's C++ wrapper (the `cef` crate, uyfb's web pane) builds with cmake and Ninja
+"brew:cmake" = "latest"
+"brew:ninja" = "latest"
+
+# Containers: colima runs the Docker VM, docker is only the client
+"brew:colima" = "latest"
+"brew:docker" = "latest"
+"brew:docker-compose" = "latest"
+
+# Cloud and AI
+"brew:awscli" = "latest"
+# MLX builds against Apple's Metal stack; Homebrew ships it ready to run
+"brew:mlx-lm" = "latest"
+
+# iOS
+"brew:xcodes" = "latest"
+"brew:aria2" = "latest"
+
+# Network
+# tailscaled runs as a boot daemon so the Mac is reachable without a GUI login:
+#   sudo brew services start tailscale
+"brew:tailscale" = "latest"
+
+# Desktop
+"brew:felixkratz/formulae/borders" = "latest"
+"brew-cask:nikitabobko/tap/aerospace" = "latest"
+"brew-cask:wezterm" = "latest"
+"brew-cask:font-fira-code-nerd-font" = "latest"
+
+# Apps
+"brew-cask:zen" = "latest"
+"brew-cask:spotify" = "latest"
+"brew-cask:visual-studio-code" = "latest"
+"brew-cask:microsoft-teams" = "latest"
+"brew-cask:ngrok" = "latest"
+"brew-cask:claude-code" = "latest"
+"brew-cask:codex" = "latest"
+
+# Arch Linux
+# Not applied yet: copied from the old `just install_pkgs`
+"pacman:gtk2" = "latest"
+"pacman:less" = "latest"
+"pacman:lxsession-gtk3" = "latest"
+"pacman:xorg-server" = "latest"
+"pacman:git" = "latest"
+"pacman:gitui" = "latest"
+"pacman:github-cli" = "latest"
+"pacman:alacritty" = "latest"
+"pacman:tmux" = "latest"
+"pacman:rofi" = "latest"
+"pacman:dunst" = "latest"
+"pacman:polybar" = "latest"
+"pacman:neovim" = "latest"
+# exa left the Arch repos; eza is its maintained fork
+"pacman:eza" = "latest"
+"pacman:bat" = "latest"
+"pacman:zoxide" = "latest"
+"pacman:ripgrep" = "latest"
+"pacman:dust" = "latest"
+"pacman:picom" = "latest"
+"pacman:unzip" = "latest"
+"pacman:pipewire" = "latest"
+"pacman:pavucontrol" = "latest"
+"pacman:playerctl" = "latest"
+"pacman:pamixer" = "latest"
+"pacman:brightnessctl" = "latest"
+"pacman:bluez" = "latest"
+"pacman:bluez-utils" = "latest"
+"pacman:blueman" = "latest"
+"pacman:vlc" = "latest"
+"pacman:feh" = "latest"
+"pacman:flameshot" = "latest"
+"pacman:lxappearance-gtk3" = "latest"
+"pacman:papirus-icon-theme" = "latest"
+"pacman:thunar" = "latest"
+"pacman:catfish" = "latest"
+"pacman:gvfs" = "latest"
+"pacman:thunar-volman" = "latest"
+"pacman:thunar-archive-plugin" = "latest"
+"pacman:thunar-media-tags-plugin" = "latest"
+"pacman:fcitx5-bamboo" = "latest"
+"pacman:fcitx5-configtool" = "latest"
+"pacman:ttf-firacode-nerd" = "latest"
+"pacman:ttf-font-awesome" = "latest"
+"pacman:noto-fonts" = "latest"
+"pacman:noto-fonts-emoji" = "latest"
+"pacman:noto-fonts-cjk" = "latest"
+"pacman:noto-fonts-extra" = "latest"
+"aur:arc-gtk-theme" = "latest"
+"aur:google-chrome" = "latest"
+"aur:betterlockscreen" = "latest"
