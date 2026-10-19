@@ -16,7 +16,6 @@
 # custom skill folder on its own (symlink-each would link every file inside instead)
 "~/.claude/CLAUDE.md" = { source = ".claude/CLAUDE.md" }
 "~/.claude/statusline.sh" = { source = "scripts/claude-statusline.sh" }
-"~/.claude/skills/devsecops-sre" = { source = ".claude/skills/devsecops-sre" }
 "~/.claude/skills/uyfb" = { source = ".claude/skills/uyfb" }
 
 # macOS
