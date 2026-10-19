@@ -38,7 +38,7 @@ act = "latest"
 
 [settings]
 # Activate the .venv that uv creates in a project
-python.uv_venv_auto = true
+python.uv_venv_auto = "source"
 
 [bootstrap.brew.taps]
 "nikitabobko/tap" = "https://github.com/nikitabobko/homebrew-tap.git"
