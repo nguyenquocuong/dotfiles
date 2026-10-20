@@ -3,6 +3,7 @@ tap "FelixKratz/formulae"
 
 # Shell and CLI
 brew "fish"
+brew "bash"
 brew "tmux"
 brew "neovim"
 brew "git"

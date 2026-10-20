@@ -50,6 +50,7 @@ python.uv_venv_auto = "source"
 [bootstrap.packages]
 # Shell and CLI
 "brew:fish" = "latest"
+"brew:bash" = "latest"
 "brew:tmux" = "latest"
 "brew:neovim" = "latest"
 "brew:git" = "latest"
