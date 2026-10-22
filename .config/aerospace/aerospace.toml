@@ -56,7 +56,9 @@ T = 'main'
 
 [mode.main.binding]
 # Apps
-alt-enter = 'exec-and-forget /opt/homebrew/bin/wezterm cli --no-auto-start spawn --new-window || open -a WezTerm'
+# Spawning into the running WezTerm focuses its existing window first,
+# so AeroSpace puts the new window on that window's workspace.
+alt-enter = 'exec-and-forget open -na WezTerm --args start --always-new-process'
 alt-w = 'exec-and-forget open -a Zen'
 alt-e = 'exec-and-forget open ~'
 
