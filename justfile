@@ -137,5 +137,5 @@ xorg_config:
 [linux]
 systemd_config:
   #!/bin/bash
-  sudo cp {{root_dir}}/systemd/system/betterlockscreen.service /usr/lib/systemd/system/betterlockscreen@$USER.service
+  sudo cp {{root_dir}}/systemd/system/betterlockscreen@.service /usr/lib/systemd/system/betterlockscreen@$USER.service
   sudo systemctl enable betterlockscreen@$USER.service
