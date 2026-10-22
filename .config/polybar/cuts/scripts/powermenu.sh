@@ -5,7 +5,7 @@
 ## Github  : @adi1090x
 ## Twitter : @adi1090x
 
-dir="~/.config/polybar/cuts/scripts/rofi"
+dir="$HOME/.config/polybar/cuts/scripts/rofi"
 uptime=$(uptime -p | sed -e 's/up //g')
 
 rofi_command="rofi -no-config -theme $dir/powermenu.rasi"
@@ -22,7 +22,7 @@ confirm_exit() {
         -i\
 		-no-fixed-num-lines\
 		-p "Are You Sure? : "\
-		-theme $dir/confirm.rasi
+		-theme "$dir/confirm.rasi"
 }
 
 msg() {
@@ -33,7 +33,7 @@ options="$lock\n$suspend\n$logout\n$reboot\n$shutdown"
 
 chosen="$(echo -e "$options" | $rofi_command -p "Uptime: $uptime" -dmenu -selected-row 0)"
 case $chosen in
-    $shutdown)
+    "$shutdown")
 		ans=$(confirm_exit &)
 		if [[ $ans == "yes" || $ans == "YES" || $ans == "y" || $ans == "Y" ]]; then
 			systemctl poweroff
@@ -43,7 +43,7 @@ case $chosen in
 			msg
         fi
         ;;
-    $reboot)
+    "$reboot")
 		ans=$(confirm_exit &)
 		if [[ $ans == "yes" || $ans == "YES" || $ans == "y" || $ans == "Y" ]]; then
 			systemctl reboot
@@ -53,14 +53,14 @@ case $chosen in
 			msg
         fi
         ;;
-    $lock)
+    "$lock")
 		if [[ -f /usr/bin/betterlockscreen ]]; then
 			betterlockscreen -l
 		elif [[ -f /usr/bin/i3lock ]]; then
 			i3lock
 		fi
         ;;
-    $suspend)
+    "$suspend")
 		ans=$(confirm_exit &)
 		if [[ $ans == "yes" || $ans == "YES" || $ans == "y" || $ans == "Y" ]]; then
 			mpc -q pause
@@ -72,7 +72,7 @@ case $chosen in
 			msg
         fi
         ;;
-    $logout)
+    "$logout")
 		ans=$(confirm_exit &)
 		if [[ $ans == "yes" || $ans == "YES" || $ans == "y" || $ans == "Y" ]]; then
       i3-msg exit
