@@ -4,7 +4,6 @@ return {
     version = "*",
     config = function()
       require("toggleterm").setup({
-        -- Size of terminal
         size = function(term)
           if term.direction == "horizontal" then
             return 15
@@ -12,16 +11,16 @@ return {
             return vim.o.columns * 0.4
           end
         end,
-        open_mapping = [[<A-i>]], -- Keymap to toggle
-        hide_numbers = true,      -- Hide line numbers in terminal buffer
+        open_mapping = [[<A-i>]],
+        hide_numbers = true,
         shade_terminals = true,
-        shading_factor = 2,       -- Terminal shading amount
+        shading_factor = 2,
         start_in_insert = true,
-        insert_mappings = true,   -- Allow toggling in insert mode
+        insert_mappings = true,
         persist_size = true,
-        direction = "float",      -- "horizontal" | "vertical" | "tab" | "float"
+        direction = "float",
         close_on_exit = true,
-        shell = vim.o.shell,      -- Shell to use
+        shell = vim.o.shell,
         float_opts = {
           border = vim.o.winborder,
           width = math.floor(vim.o.columns * 0.5),

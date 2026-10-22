@@ -15,14 +15,12 @@ used_tokens=$(echo "$input" | jq -r '(.context_window.total_input_tokens // 0) +
 window_size=$(echo "$input" | jq -r '.context_window.context_window_size // empty')
 cost=$(echo "$input" | jq -r '.cost.total_cost_usd // empty')
 
-# Git branch + dirty flag for the session's working directory.
 git_info=""
 if branch=$(git -C "$cwd" symbolic-ref --short -q HEAD 2>/dev/null || git -C "$cwd" rev-parse --short HEAD 2>/dev/null); then
   [ -n "$(git -C "$cwd" status --porcelain 2>/dev/null)" ] && branch="$branch*"
   git_info="${esc}[36m${branch}${esc}[0m"
 fi
 
-# Format a token count as a compact human-readable string (e.g. 45000 -> 45k).
 fmt_tokens() {
   awk -v n="$1" 'BEGIN {
     if (n >= 1000000) printf "%.1fM", n / 1000000;
@@ -31,14 +29,12 @@ fmt_tokens() {
   }'
 }
 
-# Pick an ANSI color for context usage: greener = more headroom (efficient),
-# redder = context filling up.
 ctx_color() {
   awk -v p="$1" 'BEGIN {
-    if (p < 50)      printf "32";  # green
-    else if (p < 75) printf "33";  # yellow
-    else if (p < 90) printf "35";  # magenta
-    else             printf "31";  # red
+    if (p < 50)      printf "32";
+    else if (p < 75) printf "33";
+    else if (p < 90) printf "35";
+    else             printf "31";
   }'
 }
 

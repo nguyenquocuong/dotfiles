@@ -1,5 +1,4 @@
 [tools]
-# Runtimes
 node = "24"
 # 3.15 is days old; many AI wheels (torch, etc.) do not ship for it yet
 python = "3.14"
@@ -7,14 +6,12 @@ go = "latest"
 # `mise bootstrap` evaluates tap casks without API metadata (aerospace) with Ruby 3+
 ruby = "3.4"
 
-# Kubernetes and IaC
 kubectl = "latest"
 helm = "latest"
 kind = "latest"
 k9s = "latest"
 opentofu = "latest"
 
-# Supply chain and security scanners
 trivy = "latest"
 syft = "latest"
 grype = "latest"
@@ -25,7 +22,6 @@ hadolint = "latest"
 shellcheck = "latest"
 pre-commit = "latest"
 
-# Secrets and utilities
 sops = "latest"
 age = "latest"
 yq = "latest"
@@ -36,11 +32,9 @@ act = "latest"
 # aider pins scipy 1.15, which has no wheels for Python 3.13+
 "pipx:aider-chat" = { version = "latest", uvx_args = "--python 3.12" }
 
-# Local LLMs on Apple Silicon (mlx_lm.generate, mlx_lm.server, ...)
 "pipx:mlx-lm" = "latest"
 
 [settings]
-# Activate the .venv that uv creates in a project
 python.uv_venv_auto = "source"
 
 [bootstrap.brew.taps]
@@ -48,7 +42,6 @@ python.uv_venv_auto = "source"
 "felixkratz/formulae" = "https://github.com/felixkratz/homebrew-formulae.git"
 
 [bootstrap.packages]
-# Shell and CLI
 "brew:fish" = "latest"
 "brew:bash" = "latest"
 "brew:tmux" = "latest"
@@ -73,7 +66,6 @@ python.uv_venv_auto = "source"
 # nvim-treesitter builds parsers with it
 "brew:tree-sitter-cli" = "latest"
 
-# Toolchains that stay outside [tools]
 "brew:mise" = "latest"
 # rustup owns the Rust toolchains; mise's rust backend only wraps it
 "brew:rustup" = "latest"
@@ -81,36 +73,30 @@ python.uv_venv_auto = "source"
 # Linux C cross toolchain: `cargo zigbuild --target x86_64-unknown-linux-gnu` checks uyfb's Linux-only code on macOS
 "brew:zig" = "latest"
 "brew:cargo-zigbuild" = "latest"
-# Python packages and venvs; mise provides the interpreter
 "brew:uv" = "latest"
 # CEF's C++ wrapper (the `cef` crate, uyfb's web pane) builds with cmake and Ninja
 "brew:cmake" = "latest"
 "brew:ninja" = "latest"
 
-# Containers: colima runs the Docker VM, docker is only the client
+# colima runs the Docker VM; docker is only the client
 "brew:colima" = "latest"
 "brew:docker" = "latest"
 "brew:docker-compose" = "latest"
 
-# Cloud
 "brew:awscli" = "latest"
 
-# iOS
 "brew:xcodes" = "latest"
+# xcodes uses it to download Xcode faster
 "brew:aria2" = "latest"
 
-# Network
-# tailscaled runs as a boot daemon so the Mac is reachable without a GUI login:
-#   sudo brew services start tailscale
+# The formula, not the GUI app: tailscaled runs at boot so the Mac is reachable before GUI login
 "brew:tailscale" = "latest"
 
-# Desktop
 "brew:felixkratz/formulae/borders" = "latest"
 "brew-cask:nikitabobko/tap/aerospace" = "latest"
 "brew-cask:wezterm" = "latest"
 "brew-cask:font-fira-code-nerd-font" = "latest"
 
-# Apps
 "brew-cask:zen" = "latest"
 "brew-cask:spotify" = "latest"
 "brew-cask:visual-studio-code" = "latest"
@@ -119,8 +105,7 @@ python.uv_venv_auto = "source"
 "brew-cask:claude-code" = "latest"
 "brew-cask:codex" = "latest"
 
-# Arch Linux
-# Not applied yet: copied from the old `just install_pkgs`
+# Not applied yet; copied from the old `just install_pkgs`
 "pacman:mise" = "latest"
 "pacman:gtk2" = "latest"
 "pacman:less" = "latest"

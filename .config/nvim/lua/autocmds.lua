@@ -1,9 +1,7 @@
 local autocmd = vim.api.nvim_create_autocmd
 
--- Reload file when changed externally
 autocmd("FocusGained", { command = "checktime" })
 
--- Restore cursor position
 autocmd("BufReadPost", {
   pattern = "*",
   callback = function()

@@ -18,21 +18,20 @@ return {
     opts = {},
   },
 
-  -- Statusline
   {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("lualine").setup({
         options = {
-          theme = "auto",      -- match current colorscheme
-          globalstatus = true, -- single statusline for all windows
+          theme = "auto",
+          globalstatus = true,
           disabled_filetypes = { statusline = {}, winbar = {} },
         },
         sections = {
           lualine_a = { "mode" },
           lualine_b = { "branch", "diff", "diagnostics" },
-          lualine_c = { { "filename", path = 1 } }, -- 0 = name, 1 = relative, 2 = absolute
+          lualine_c = { { "filename", path = 1 } },
           lualine_x = {
             {
               function()
@@ -80,12 +79,12 @@ return {
           },
         },
         filters = {
-          dotfiles = false, -- set to true if you want to hide dotfiles
+          dotfiles = false,
           custom = { "^.git$", "node_modules" },
         },
         actions = {
           open_file = {
-            quit_on_open = false, -- keep tree open when you open a file
+            quit_on_open = false,
             resize_window = true,
           },
         },
@@ -100,7 +99,6 @@ return {
         }
       })
 
-      -- Always focus current file when opening NvimTree
       vim.api.nvim_create_autocmd("BufEnter", {
         callback = function()
           local api = require("nvim-tree.api")
@@ -155,16 +153,15 @@ return {
         },
       },
       presets = {
-        bottom_search = true,         -- use a classic bottom cmdline for search
-        command_palette = false,      -- position the cmdline and popupmenu together
-        long_message_to_split = true, -- long messages will be sent to a split
-        inc_rename = false,           -- enables an input dialog for inc-rename.nvim
-        lsp_doc_border = true,        -- add a border to hover docs and signature help
+        bottom_search = true,
+        command_palette = false,
+        long_message_to_split = true,
+        inc_rename = false,
+        lsp_doc_border = true,
       },
     },
     dependencies = {
       "MunifTanjim/nui.nvim",
-      -- "rcarriga/nvim-notify",
     },
   },
 }

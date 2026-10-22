@@ -1,6 +1,4 @@
--- Ported from .config/alacritty/alacritty.toml.
--- Default keys already match the old Alacritty bindings:
--- Ctrl+Shift+C/V copy/paste, Ctrl+=/-/0 font size.
+-- No key config needed: the defaults already match the old Alacritty bindings
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
@@ -25,14 +23,14 @@ config.colors = {
 }
 config.default_cursor_style = "SteadyBlock"
 
--- A little transparency, with blur on macOS so text stays readable
+-- Blur on macOS keeps text readable through the transparency
 config.window_background_opacity = 0.92
 config.macos_window_background_blur = 20
 
--- No title bar, still resizable. tmux handles tabs, so hide the tab bar.
+-- tmux handles tabs
 config.window_decorations = "RESIZE"
 config.hide_tab_bar_if_only_one_tab = true
--- Small even padding: clears the rounded window corners, keeps the tmux bar close to the edges
+-- Clears the rounded window corners but keeps the tmux bar close to the edges
 config.window_padding = { left = "6pt", right = "6pt", top = "6pt", bottom = "6pt" }
 
 config.scrollback_lines = 10000

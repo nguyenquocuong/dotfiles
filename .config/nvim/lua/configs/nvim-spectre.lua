@@ -1,9 +1,4 @@
 require("spectre").setup({
-  -- default = {
-  -- 	replace = {
-  -- 		cmd = "oxi",
-  -- 	},
-  -- },
 })
 
 vim.keymap.set("n", "<leader>sw", '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {

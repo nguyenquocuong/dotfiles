@@ -7,7 +7,6 @@ vim.g.rustaceanvim = {
       vim.keymap.set("x", "s", function() require("tree_climber_rust").select_incremental() end, opts)
       vim.keymap.set("x", "S", function() require("tree_climber_rust").select_previous() end, opts)
 
-      -- Code actions
       vim.keymap.set('n', '<leader>ca', function()
         vim.cmd.RustLsp({ 'codeAction' })
       end, opts)

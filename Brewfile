@@ -1,7 +1,6 @@
 tap "nikitabobko/tap"
 tap "FelixKratz/formulae"
 
-# Shell and CLI
 brew "fish"
 brew "bash"
 brew "tmux"
@@ -26,7 +25,6 @@ brew "rsync"
 # nvim-treesitter builds parsers with it
 brew "tree-sitter-cli"
 
-# Languages and toolchains
 # Runtimes (node, python, go) and DevSecOps CLIs live in .config/mise/config.toml [tools]
 brew "mise"
 brew "rustup"
@@ -39,30 +37,25 @@ brew "uv"
 brew "cmake"
 brew "ninja"
 
-# Containers: colima runs the Docker VM, docker is only the client
+# colima runs the Docker VM; docker is only the client
 brew "colima"
 brew "docker"
 brew "docker-compose"
 
-# Cloud
 brew "awscli"
 
-# iOS
 brew "xcodes"
+# xcodes uses it to download Xcode faster
 brew "aria2"
 
-# Network
-# tailscaled runs as a boot daemon so the Mac is reachable without a GUI login:
-#   sudo brew services start tailscale
+# The formula, not the GUI app: tailscaled runs at boot so the Mac is reachable before GUI login
 brew "tailscale"
 brew "FelixKratz/formulae/borders"
 
-# Desktop
 cask "nikitabobko/tap/aerospace"
 cask "wezterm"
 cask "font-fira-code-nerd-font"
 
-# Apps
 cask "zen"
 cask "spotify"
 cask "visual-studio-code"

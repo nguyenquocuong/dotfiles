@@ -18,7 +18,6 @@ return {
       end
 
       -- The main branch does not install parsers or start highlighting on its own.
-      -- Install a parser the first time its filetype is opened, then highlight.
       vim.api.nvim_create_autocmd("FileType", {
         group = vim.api.nvim_create_augroup("treesitter_start", { clear = true }),
         callback = function(args)
@@ -40,7 +39,6 @@ return {
     end,
   },
 
-  -- Automatically add closing tags for HTML and JSX
   {
     "windwp/nvim-ts-autotag",
     ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },

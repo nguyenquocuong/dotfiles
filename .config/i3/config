@@ -1,71 +1,45 @@
-# border & title
 for_window [class="^.*"] border pixel 1, title_format "<b> %class >> %title </b>"
 
-# gaps
 gaps inner 4
 gaps outer 0
 
-# font
 font pango:monospace 11
 
-# mod key used for most binds
-# Mod1 = Alt
-# Mod4 = Super
 set $Mod Mod4
 
-# direction keys
 set $up k
 set $down j
 set $left h
 set $right l
 
-# Monitors
 set $mon1 eDP-1
-# set $mon2 DP-1
 set $mon2 HDMI-1
 
-###############        Bar         ##################
-#bar {
-#    position top
-#}
-
-###############     Autostart      ##################
-
-# run with reload
-# Give systemd user services (xdg-desktop-portal-gtk, file dialogs) the X display.
+# systemd user services (xdg-desktop-portal-gtk, file dialogs) need the X display
 exec_always --no-startup-id systemctl --user import-environment DISPLAY XAUTHORITY
 exec_always --no-startup-id picom
 exec_always --no-startup-id fcitx5 -d
 exec_always --no-startup-id $HOME/.fehbg
 exec_always --no-startup-id mons -a -x $HOME/dotfiles/scripts/multi-monitors.sh
 
-# run once
-#exec --no-startup-id xfsettingsd
 exec --no-startup-id dunst
 
-# needed for super to launch rofi through ksuperkey, see ~/.xprofile
+# Needed for Super to launch rofi through ksuperkey, see ~/.xprofile
 bindsym $Mod+d exec --no-startup-id /usr/local/bin/rofi_run --drun
 
-# logout script
 bindsym $Mod+x exec --no-startup-id /usr/local/bin/rofi_run --logout
 
-#############         Bindings           ##################
-
-# kill focused window
 bindsym $Mod+Shift+q kill
 bindsym Mod1+q kill
 bindsym Mod1+F4 kill
 
-# core
 bindsym $Mod+q          exec --no-startup-id networkmanager_dmenu
 bindsym $Mod+w          exec --no-startup-id google-chrome-stable
 bindsym $Mod+e          exec --no-startup-id Thunar
 bindsym $Mod+Return     exec --no-startup-id alacritty
 
-# Flameshot
 bindsym --release Shift+Print exec --no-startup-id flameshot gui
 
-# audio
 bindsym XF86AudioPlay        exec --no-startup-id playerctl play-pause
 bindsym XF86AudioNext        exec --no-startup-id playerctl next
 bindsym XF86AudioPrev        exec --no-startup-id playerctl previous
@@ -74,11 +48,8 @@ bindsym XF86AudioMute        exec --no-startup-id pamixer -t
 bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer -i 2
 bindsym XF86AudioLowerVolume exec --no-startup-id pamixer -d 2
 
-# backlight
 bindsym XF86MonBrightnessUp   exec --no-startup-id brightnessctl s 10%+
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl s 10%-
-
-###########          Workspace Bindings          ###############
 
 workspace 1 output $mon1
 workspace 2 output $mon1
@@ -101,10 +72,9 @@ workspace 18 output $mon2
 workspace 19 output $mon2
 workspace 20 output $mon2
 
-# Workspace N on the monitor that has focus, see scripts/i3-ws.sh
+# 1-10 are pinned to $mon1, so plain `workspace N` cannot reach $mon2
 set $ws $HOME/dotfiles/scripts/i3-ws.sh
 
-# switch to workspace N on the focused monitor
 bindsym $Mod+1 exec --no-startup-id $ws $mon1 go 1
 bindsym $Mod+2 exec --no-startup-id $ws $mon1 go 2
 bindsym $Mod+3 exec --no-startup-id $ws $mon1 go 3
@@ -116,7 +86,6 @@ bindsym $Mod+8 exec --no-startup-id $ws $mon1 go 8
 bindsym $Mod+9 exec --no-startup-id $ws $mon1 go 9
 bindsym $Mod+0 exec --no-startup-id $ws $mon1 go 10
 
-# switch to workspace N on the focused monitor - numpad alternatives
 bindsym $Mod+Mod2+KP_1 exec --no-startup-id $ws $mon1 go 1
 bindsym $Mod+Mod2+KP_2 exec --no-startup-id $ws $mon1 go 2
 bindsym $Mod+Mod2+KP_3 exec --no-startup-id $ws $mon1 go 3
@@ -128,7 +97,6 @@ bindsym $Mod+Mod2+KP_8 exec --no-startup-id $ws $mon1 go 8
 bindsym $Mod+Mod2+KP_9 exec --no-startup-id $ws $mon1 go 9
 bindsym $Mod+Mod2+KP_0 exec --no-startup-id $ws $mon1 go 10
 
-# move focused container to workspace N on the focused monitor
 bindsym $Mod+Shift+1 exec --no-startup-id $ws $mon1 move 1
 bindsym $Mod+Shift+2 exec --no-startup-id $ws $mon1 move 2
 bindsym $Mod+Shift+3 exec --no-startup-id $ws $mon1 move 3
@@ -140,7 +108,6 @@ bindsym $Mod+Shift+8 exec --no-startup-id $ws $mon1 move 8
 bindsym $Mod+Shift+9 exec --no-startup-id $ws $mon1 move 9
 bindsym $Mod+Shift+0 exec --no-startup-id $ws $mon1 move 10
 
-# move focused container to workspace N on the focused monitor - numpad alternatives
 bindsym $Mod+Shift+Mod2+KP_1 exec --no-startup-id $ws $mon1 move 1
 bindsym $Mod+Shift+Mod2+KP_2 exec --no-startup-id $ws $mon1 move 2
 bindsym $Mod+Shift+Mod2+KP_3 exec --no-startup-id $ws $mon1 move 3
@@ -152,7 +119,6 @@ bindsym $Mod+Shift+Mod2+KP_8 exec --no-startup-id $ws $mon1 move 8
 bindsym $Mod+Shift+Mod2+KP_9 exec --no-startup-id $ws $mon1 move 9
 bindsym $Mod+Shift+Mod2+KP_0 exec --no-startup-id $ws $mon1 move 10
 
-# switch to workspace N on the other monitor
 bindsym $Mod+Control+1 exec --no-startup-id $ws $mon1 go-other 1
 bindsym $Mod+Control+2 exec --no-startup-id $ws $mon1 go-other 2
 bindsym $Mod+Control+3 exec --no-startup-id $ws $mon1 go-other 3
@@ -164,7 +130,6 @@ bindsym $Mod+Control+8 exec --no-startup-id $ws $mon1 go-other 8
 bindsym $Mod+Control+9 exec --no-startup-id $ws $mon1 go-other 9
 bindsym $Mod+Control+0 exec --no-startup-id $ws $mon1 go-other 10
 
-# switch to workspace N on the other monitor - numpad alternatives
 bindsym $Mod+Control+Mod2+KP_1 exec --no-startup-id $ws $mon1 go-other 1
 bindsym $Mod+Control+Mod2+KP_2 exec --no-startup-id $ws $mon1 go-other 2
 bindsym $Mod+Control+Mod2+KP_3 exec --no-startup-id $ws $mon1 go-other 3
@@ -176,7 +141,6 @@ bindsym $Mod+Control+Mod2+KP_8 exec --no-startup-id $ws $mon1 go-other 8
 bindsym $Mod+Control+Mod2+KP_9 exec --no-startup-id $ws $mon1 go-other 9
 bindsym $Mod+Control+Mod2+KP_0 exec --no-startup-id $ws $mon1 go-other 10
 
-# move focused container to workspace N on the other monitor
 bindsym $Mod+Control+Shift+1 exec --no-startup-id $ws $mon1 move-other 1
 bindsym $Mod+Control+Shift+2 exec --no-startup-id $ws $mon1 move-other 2
 bindsym $Mod+Control+Shift+3 exec --no-startup-id $ws $mon1 move-other 3
@@ -188,7 +152,6 @@ bindsym $Mod+Control+Shift+8 exec --no-startup-id $ws $mon1 move-other 8
 bindsym $Mod+Control+Shift+9 exec --no-startup-id $ws $mon1 move-other 9
 bindsym $Mod+Control+Shift+0 exec --no-startup-id $ws $mon1 move-other 10
 
-# move focused container to workspace N on the other monitor - numpad alternatives
 bindsym $Mod+Control+Shift+Mod2+KP_1 exec --no-startup-id $ws $mon1 move-other 1
 bindsym $Mod+Control+Shift+Mod2+KP_2 exec --no-startup-id $ws $mon1 move-other 2
 bindsym $Mod+Control+Shift+Mod2+KP_3 exec --no-startup-id $ws $mon1 move-other 3
@@ -200,39 +163,27 @@ bindsym $Mod+Control+Shift+Mod2+KP_8 exec --no-startup-id $ws $mon1 move-other 8
 bindsym $Mod+Control+Shift+Mod2+KP_9 exec --no-startup-id $ws $mon1 move-other 9
 bindsym $Mod+Control+Shift+Mod2+KP_0 exec --no-startup-id $ws $mon1 move-other 10
 
-# switch to next or previous workspace
 bindsym $Mod+Mod1+Left workspace prev
 bindsym $Mod+Mod1+Right workspace next
 bindsym Mod1+Tab workspace back_and_forth
 
-
-##############     Reload configs           ################
-
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $Mod+Shift+r restart
 
-# reload the configuration file
 bindsym $Mod+Shift+c reload
 
-############      Container/Window control  ############
-
-# Scratchpad, Floating
 bindsym $Mod+space floating toggle
 floating_modifier  Mod1
 
-# Fullscreen
 bindsym $Mod+f fullscreen toggle
 
 bindsym $Mod+Shift+z move scratchpad
 bindsym $Mod+z scratchpad show
 
-# change focus
 bindsym $Mod+$left  focus left
 bindsym $Mod+$down  focus down
 bindsym $Mod+$up    focus up
 bindsym $Mod+$right focus right
 
-# alternatively, you can use the cursor keys:
 bindsym $Mod+Left  focus left
 bindsym $Mod+Down  focus down
 bindsym $Mod+Up    focus up
@@ -241,42 +192,23 @@ bindsym $Mod+Right focus right
 bindsym $Mod+p focus parent
 bindsym $Mod+c focus child
 
-# move focused window
 bindsym $Mod+Shift+$left  move left  10px
 bindsym $Mod+Shift+$down  move down  10px
 bindsym $Mod+Shift+$up    move up    10px
 bindsym $Mod+Shift+$right move right 10px
 
-# alternatively, you can use the cursor keys:
 bindsym $Mod+Shift+Up    move up    10px
 bindsym $Mod+Shift+Down  move down  10px
 bindsym $Mod+Shift+Left  move left  10px
 bindsym $Mod+Shift+Right move right 10px
 
-# Size
-#bindsym Mod1+Shift+Up    resize shrink height 10 px or 1 ppt
-#bindsym Mod1+Shift+Down  resize grow   height 10 px or 1 ppt
-#bindsym Mod1+Shift+Left  resize shrink width  10 px or 1 ppt
-#bindsym Mod1+Shift+Right resize grow   width  10 px or 1 ppt
-
-# layout toggle, keycode 23 is Tab
-#bindcode Mod1+23 layout toggle tabbed split
-#bindcode $Mod+23 layout toggle splitv splith
-
-# switch to workspace with urgent window
 for_window [urgent="latest"] focus
 focus_on_window_activation   focus
 
-# container layout
-# bindsym $Mod+h split h
-# bindsym $Mod+v split v
 bindsym $Mod+Shift+t layout tabbed
 bindsym $Mod+Shift+s layout stacking
-# bindsym $Mod+Shift+h layout toggle split
 
 default_orientation horizontal
-
-###############      Border & Gaps     ###############
 
 default_border normal
 default_floating_border  normal
@@ -285,18 +217,15 @@ hide_edge_borders both
 
 bindsym $Mod+shift+b border toggle
 
-# changing border style
 bindsym $Mod+n border normal
 bindsym $Mod+y border 1pixel
 bindsym $Mod+u border none
 
-# client.focused          #4c7899 #285577 #ffffff #2e9ef4
 client.focused          #4c7899 #9f78e1 #ffffff #9f78e1
 client.unfocused        #333333 #222222 #888888 #292d3e
 client.focused_inactive #5f676a #222222 #ffffff #484e50
 client.urgent           #2f343a #900000 #ffffff #900000
 
-# change gaps
 bindsym $Mod+plus                gaps inner current plus  5
 bindsym $Mod+minus               gaps inner current minus 5
 bindsym $Mod+Shift+plus          gaps outer current plus  5
@@ -306,17 +235,12 @@ bindsym $Mod+Control+minus       gaps inner all     minus 5
 bindsym $Mod+Control+Shift+plus  gaps outer all     plus  5
 bindsym $Mod+Control+Shift+minus gaps outer all     minus 5
 
-############    application settings   ############
-
-# assign applications to specific workspace
 assign [class="(?i)(?:firefox)"] → 1
 assign [class="(?i)(?:geany)"]   → 2
 assign [class="(?i)(?:thunar)"]  → 3
 
-# focus, floating, & sticky
 for_window [class="(?i)(?:qt5ct|pinentry|alacritty|brave-browser|flameshot)"]          floating enable, focus
 for_window [title="(?i)(?:copying|deleting|moving)"] floating enable
 for_window [window_role="(?i)(?:pop-up|setup)"]      floating enable
 
 popup_during_fullscreen smart
-

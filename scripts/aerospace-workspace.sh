@@ -1,9 +1,6 @@
 #!/bin/bash
-# Focus or move to workspace <1-10> on the focused monitor.
-# Workspaces 1-10 live on the main monitor and 11-20 on the secondary one
-# (see workspace-to-monitor-force-assignment in aerospace.toml),
-# so add 10 when the focused monitor is not the main one.
-# Usage: aerospace-workspace.sh focus|move <1-10>
+# 1-10 are pinned to the main monitor and 11-20 to the secondary one
+# (workspace-to-monitor-force-assignment in aerospace.toml)
 set -euo pipefail
 
 aerospace=/opt/homebrew/bin/aerospace

@@ -1,5 +1,4 @@
 return {
-  -- LSP Installer
   {
     "mason-org/mason.nvim",
     config = function()
@@ -27,7 +26,6 @@ return {
     end,
   },
 
-  -- LSP Config
   {
     "neovim/nvim-lspconfig",
     config = function()

@@ -26,7 +26,6 @@ return {
           vim.keymap.set(mode, l, r, opts)
         end
 
-        -- Navigation
         map("n", "]c", function()
           if vim.wo.diff then
             vim.cmd.normal({ "]c", bang = true })
@@ -43,7 +42,6 @@ return {
           end
         end)
 
-        -- Actions
         map("n", "<leader>ghs", gitsigns.stage_hunk)
         map("n", "<leader>ghr", gitsigns.reset_hunk)
 
@@ -75,11 +73,9 @@ return {
         end)
         map("n", "<leader>ghq", gitsigns.setqflist)
 
-        -- Toggles
         map("n", "<leader>gtb", gitsigns.toggle_current_line_blame)
         map("n", "<leader>gtw", gitsigns.toggle_word_diff)
 
-        -- Text object
         map({ "o", "x" }, "gih", gitsigns.select_hunk)
       end,
     },

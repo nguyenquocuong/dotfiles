@@ -1,61 +1,49 @@
 local opt = vim.opt
 
--- UI
-opt.number = true         -- Show line numbers
-opt.relativenumber = true -- Relative line numbers
-opt.cursorline = true     -- Highlight current line
-opt.termguicolors = true  -- True color support
-opt.signcolumn = "yes"    -- Always show sign column
-opt.wrap = true           -- No line wrap by default
-opt.scrolloff = 8         -- Keep cursor away from screen edge
-opt.sidescrolloff = 8     -- Same for horizontal scroll
-opt.winborder = "rounded" -- Default border for floating windows
+opt.number = true
+opt.relativenumber = true
+opt.cursorline = true
+opt.termguicolors = true
+opt.signcolumn = "yes"
+opt.wrap = true
+opt.scrolloff = 8
+opt.sidescrolloff = 8
+opt.winborder = "rounded"
 
--- Indentation
-opt.expandtab = true   -- Tabs -> spaces
-opt.tabstop = 2        -- Tab width
-opt.shiftwidth = 2     -- Indent width
-opt.softtabstop = 2    -- Backspace behaves as expected
-opt.smartindent = true -- Smart autoindent
+opt.expandtab = true
+opt.tabstop = 2
+opt.shiftwidth = 2
+opt.softtabstop = 2
+opt.smartindent = true
 
--- Search
-opt.ignorecase = true -- Ignore case by default
-opt.smartcase = true  -- Override ignorecase if search has capitals
-opt.incsearch = true  -- Show matches while typing
-opt.hlsearch = true   -- Highlight search matches
+opt.ignorecase = true
+opt.smartcase = true
+opt.incsearch = true
+opt.hlsearch = true
 
--- Clipboard & mouse
-opt.clipboard = "unnamedplus" -- Use system clipboard
-opt.mouse = "a"               -- Enable mouse in all modes
+opt.clipboard = "unnamedplus"
+opt.mouse = "a"
 
--- Splits
-opt.splitbelow = true -- Horizontal split below
-opt.splitright = true -- Vertical split to the right
+opt.splitbelow = true
+opt.splitright = true
 
--- Performance
-opt.updatetime = 250 -- Faster CursorHold events
-opt.timeoutlen = 400 -- Shorter mapped sequence timeout
+opt.updatetime = 250
+opt.timeoutlen = 400
 
--- File handling
-opt.swapfile = false -- Disable swapfiles
-opt.backup = false   -- No backup file
-opt.undofile = true  -- Persistent undo
+opt.swapfile = false
+opt.backup = false
+opt.undofile = true
 opt.undodir = vim.fn.stdpath("data") .. "/undo"
 
--- Completion
 opt.completeopt = { "menu", "menuone", "noselect" }
 
--- Encoding
 opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
 
--- Better fillchars for UI
 opt.fillchars = { eob = " " }
 
--- Reduce command line messages
 opt.shortmess:append("c")
 
--- Show whitespace
 opt.list = true
 opt.listchars:append({
   tab = "» ",
@@ -64,5 +52,5 @@ opt.listchars:append({
   precedes = "‹",
 })
 
--- Disable showing current mode (since it's in statusline)
+-- lualine already shows the mode
 opt.showmode = false

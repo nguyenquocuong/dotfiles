@@ -1,11 +1,5 @@
 #!/bin/sh
-# Workspace N on the focused monitor.
-#
-# Usage: i3-ws.sh <primary-output> <go|move|go-other|move-other> <1-10>
-#
-# Workspaces 1-10 live on the primary output, 11-20 on the second one.
-# "go" / "move" target the monitor that currently has focus,
-# "go-other" / "move-other" target the other monitor.
+# 1-10 are pinned to the primary output and 11-20 to the second one (see i3 config)
 
 set -eu
 

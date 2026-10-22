@@ -2,7 +2,6 @@ set shell := ["/bin/bash", "-c"]
 
 root_dir := source_dir()
 
-# Full first-time machine setup in logical order
 [linux]
 setup: yay install_pkgs config tpm_install xorg_config systemd_config sound_setup
 
@@ -29,25 +28,20 @@ install_pkgs:
   sudo pacman -S --noconfirm mise gtk2 less lxsession-gtk3 xorg-server git gitui github-cli alacritty tmux rofi dunst polybar neovim exa bat zoxide ripgrep picom unzip
   sudo pacman -S --noconfirm pipewire pavucontrol playerctl pamixer brightnessctl
 
-  # Bluetooth
   sudo pacman -S --noconfirm bluez bluez-utils blueman
 
-  # Applications
   sudo pacman -S --noconfirm vlc feh flameshot lxappearance-gtk3 papirus-icon-theme
   sudo pacman -S --noconfirm thunar catfish gvfs thunar-volman thunar-archive-plugin thunar-media-tags-plugin
   sudo pacman -S --noconfirm fcitx5-bamboo fcitx5-configtool
   yay -S --noconfirm arc-gtk-theme google-chrome betterlockscreen
 
-  # Fonts
   sudo pacman -S ttf-firacode-nerd ttf-font-awesome
   yay -S --noconfirm noto-fonts noto-fonts-emoji noto-fonts-cjk noto-fonts-extra
 
   sudo cp {{root_dir}}/scripts/rofi_run /usr/local/bin/rofi_run
 
-  # GTK dark mode
   gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 
-# Install everything in Brewfile (installs Homebrew first if missing)
 [macos]
 install_pkgs:
   #!/bin/bash
@@ -56,17 +50,16 @@ install_pkgs:
   fi
   /opt/homebrew/bin/brew bundle --file {{root_dir}}/Brewfile
 
-# Save installed Homebrew packages back to Brewfile, then review the diff
+# --force overwrites Brewfile and drops its comments, so review the diff
 [macos]
 brew_dump:
   brew bundle dump --force --file {{root_dir}}/Brewfile
 
-# Install the [tools] in .config/mise/config.toml (needs `config` to link it first)
+# Needs `config` first, which links .config/mise/config.toml
 [macos]
 mise_tools:
   mise install
 
-# Make Homebrew's fish the login shell
 [macos]
 login_shell:
   #!/bin/bash
@@ -77,13 +70,12 @@ login_shell:
     chsh -s "$fish_path"
   fi
 
-# Apply macOS system settings
 [macos]
 macos_defaults:
   {{root_dir}}/scripts/macos-defaults.sh
 
 # Do not install the Tailscale GUI app next to this daemon.
-# Run tailscaled at boot, so the Mac is reachable before GUI login
+# Runs at boot so the Mac is reachable before GUI login
 [macos]
 tailscale_daemon:
   sudo brew services start tailscale
@@ -95,7 +87,6 @@ update_mirrors:
   sudo pacman -S --noconfirm reflector
   sudo reflector --latest 5 --protocol https --sort rate --save /etc/pacman.d/mirrorlist --country Vietnam,Singapore,WorldWide
 
-# Symlink all user configs into ~ (the entries live in mise.toml [dotfiles])
 config:
   mise -C {{root_dir}} trust --all
   mise -C {{root_dir}} dot apply
@@ -112,7 +103,6 @@ neovim_uninstall:
   #!/bin/bash
   rm -rf ~/.config/nvim ~/.local/state/nvim ~/.local/share/nvim
 
-# Install adi1090x polybar themes then layer dotfiles config on top
 [linux]
 polybar_config:
   #!/bin/bash

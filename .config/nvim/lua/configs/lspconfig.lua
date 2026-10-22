@@ -1,6 +1,5 @@
--- LSP keymaps (when any server attaches).
--- An autocmd instead of per-server on_attach, so nvim-lspconfig's own on_attach
--- (e.g. ts_ls and clangd user commands) is not replaced.
+-- Use an autocmd, not per-server on_attach, so nvim-lspconfig's own on_attach
+-- (e.g. ts_ls and clangd user commands) is kept.
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("lsp_keymaps", { clear = true }),
   callback = function(args)
@@ -9,7 +8,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     local opts = { noremap = true, silent = true, buffer = bufnr }
     local keymap = vim.keymap.set
 
-    -- In Rust buffers, rustaceanvim sets these (configs/rustaceanvim.lua)
+    -- rustaceanvim sets these in Rust buffers (configs/rustaceanvim.lua)
     if vim.bo[bufnr].filetype ~= "rust" then
       keymap("n", "K", vim.lsp.buf.hover, opts)
       keymap("n", "<leader>ca", vim.lsp.buf.code_action, opts)
@@ -37,7 +36,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
--- Capabilities (for completion plugin like nvim-cmp), shared by all servers
 local ok_cmp, cmp_lsp = pcall(require, "cmp_nvim_lsp")
 if ok_cmp then
   vim.lsp.config("*", { capabilities = cmp_lsp.default_capabilities() })
@@ -58,17 +56,14 @@ local servers = {
     settings = {
       Lua = {
         runtime = {
-          -- Tell lua_ls to use LuaJIT runtime (what Neovim uses)
           version = "LuaJIT",
         },
         diagnostics = {
-          -- Recognize the `vim` global
           globals = { "vim" },
         },
         workspace = {
-          -- Make the server aware of Neovim runtime files
           library = vim.api.nvim_get_runtime_file("", true),
-          checkThirdParty = false, -- turn off prompt for third party libraries
+          checkThirdParty = false,
         },
         telemetry = { enable = false },
       },
@@ -113,6 +108,6 @@ local servers = {
 }
 
 for name, opts in pairs(servers) do
-  vim.lsp.config(name, opts) -- nvim v0.11.0 or above required
-  vim.lsp.enable(name)       -- nvim v0.11.0 or above required
+  vim.lsp.config(name, opts)
+  vim.lsp.enable(name)
 end
